@@ -1,0 +1,60 @@
+<html>
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+
+<body>
+
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+
+        <!-- End Navbar -->
+        <div class="container">
+            <h3>Customer Directory</h3>
+            <hr>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempCustomer: ${customers}">
+                    <td th:text="${tempCustomer.customerid}" />
+                    <td th:text="${tempCustomer.name}" />
+                    <td th:text="${tempCustomer.email}" />
+                    <td th:text="${tempCustomer.phone}" />
+                    <td th:text="${tempCustomer.address}" />
+
+                    <td>
+                        <a th:href="@{/customer/user/{userId}/orders(userId=${tempCustomer.customerid})}">View order</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"/>
+</body>
+</html>

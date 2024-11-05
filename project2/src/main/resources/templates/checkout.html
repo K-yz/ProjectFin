@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Home</a></li>
+                <li>Shopping Cart</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page Banner Section End -->
+
+    <!-- Product Section Start -->
+    <div class="shop-product-section section section-padding">
+        <div class="container">
+            <form th:action="@{/checkout/cart-checkout}" method="post" class="checkout-form">
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <!-- Shipping Address -->
+                        <div id="shipping-form" class="mt-md-8 mt-6">
+                            <h4 class="mb-4">Shipping Address</h4>
+                            <div class="row row-cols-sm-2 row-cols-1 g-4">
+                                <div class="col">
+                                    <label>First Name*</label>
+                                    <input class="form-field" type="text" placeholder="First Name"
+                                           th:value="${customer.user.firstName}" name="firstName">
+                                </div>
+                                <div class="col">
+                                    <label>Last Name*</label>
+                                    <input class="form-field" type="text" placeholder="Last Name"
+                                           th:value="${customer.user.lastName}" name="lastName">
+                                </div>
+                                <div class="col">
+                                    <label>Email*</label>
+                                    <input class="form-field" type="email" placeholder="Email Address"
+                                           th:value="${customer.user.email}" readonly name="email">
+                                </div>
+                                <div class="col">
+                                    <label>Phone no*</label>
+                                    <input class="form-field" type="text" placeholder="Phone number"
+                                           th:value="${customer.phone}" name="phone">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>Address*</label>
+                                    <input class="form-field" type="text" placeholder="Address"
+                                           th:value="${customer.address}" name="address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <!-- Checkout Summary Start -->
+                        <div class="checkout-box">
+                            <h4 class="mb-4">Cart Total</h4>
+                            <table class="checkout-summary-table table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item : ${cart.items}">
+                                    <td th:text="${item.product.name}"></td>
+                                    <td th:text="${item.quantity}"></td>
+                                    <td th:text="${item.product.price}"></td>
+                                    <td th:text="${item.product.price * item.quantity}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th class="border-top">Grand Total</th>
+                                    <th class="border-top"> </th>
+                                    <th class="border-top"> </th>
+                                    <th class="border-top" th:text="${cart.total}"></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- Checkout Summary End -->
+
+                        <!-- Payment Method Start -->
+                        <div class="checkout-payment-method">
+                            <h4>Shipping Method</h4>
+                            <select name="shippingMethod" required>
+                                <option value="" disabled selected>-- Choose Method --</option>
+                                <tr th:each="method: ${shippingMethods}">
+                                    <option th:value="${method.id}" th:text="${method.methodName}"></option>
+                                </tr>
+                            </select>
+
+                            <h3>Choose a Payment Method:</h3>
+                            <div th:each="method : ${paymentMethods}">
+                                <input type="radio" th:value="${method.id}" name="paymentMethodId" th:id="${method.methodName}" required>
+                                <label th:for="${method.methodName}" th:text="${method.methodName}"></label>
+                            </div>
+                            <!--<select name="paymentMethod" required>
+                                <option value="" disabled selected>&#45;&#45; Chọn phương thức &#45;&#45;</option>
+                                <tr th:each="method: ${paymentMethods}">
+                                    <option th:value="${method.id}" th:text="${method.methodName}"></option>
+                                </tr>
+                            </select>-->
+
+                        </div>
+
+
+
+
+                        <div class="checkout-box">
+                            <button class="btn btn-dark btn-primary-hover rounded-0 mt-6">Place order</button>
+                        </div>
+                        <!-- Payment Method End -->
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- Product Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/kofi/kofi/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Jun 2024 08:40:01 GMT -->
+</html>

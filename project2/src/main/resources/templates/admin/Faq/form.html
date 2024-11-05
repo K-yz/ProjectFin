@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+
+        <!-- End Navbar -->
+        <div class="container">
+
+            <h1 th:text="${faq == null} ? 'Add New FAQ' : 'Edit FAQ'"></h1>
+            <form th:action="@{/faq/save}" th:object="${faq}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{faqid}"/>
+                <input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Name">
+                <input type="text" th:field="*{description}" class="form-control mb-4 col-4" placeholder="Description">
+                <button type="submit">Save</button>
+            </form>
+            <a href="/faq/list">Back to list</a>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"/>
+</body>
+</html>

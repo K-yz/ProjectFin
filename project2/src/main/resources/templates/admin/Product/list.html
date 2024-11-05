@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+
+        <!-- End Navbar -->
+        <div class="container">
+            <h3>Product Directory</h3>
+            <hr>
+
+            <a href="/product/add" class="btn btn-primary btn-sm mb-3">Add Product</a>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempProduct: ${products}">
+                    <td th:text="${tempProduct.productid}"></td>
+                    <td th:text="${tempProduct.name}"></td>
+                    <td th:text="${tempProduct.price}"></td>
+                    <td th:text="${tempProduct.description}"></td>
+
+                    <td>
+                        <img th:src="${tempProduct.image}" alt="Product Image" style="width: 100px; height: auto;" />
+                    </td>
+
+
+                    <td th:text="${tempProduct.category.name}"></td>
+
+                    <td>
+                        <div class="row">
+                            <div class="col-small">
+                                <a th:href="@{/product/edit/{id}(id=${tempProduct.productid})}">
+                                    <button type="submit" class="btn btn-info btn-sm">Update</button>
+                                </a>
+                            </div>
+                            <div class="col-small">
+                                <a th:href="@{/product/delete/{id}(id=${tempProduct.productid})}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false;">Delete</button>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"/>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+
+<body>
+
+
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"></div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"></div>
+
+        <!-- End Navbar -->
+        <div class="container">
+            <h3>Order Directory</h3>
+            <hr>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Customer</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Payment Method</th>
+                    <th>Shipping Method</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempOrder: ${orders}">
+                    <td th:text="${tempOrder.orderid}"></td>
+                    <td th:text="${tempOrder.customer.name}"></td>
+                    <td th:text="${tempOrder.orderDate}"></td>
+                    <td th:text="${tempOrder.price}"></td>
+                    <td th:text="${tempOrder.status}"></td>
+                    <td th:text="${tempOrder.paymentMethod.methodName}"></td>
+                    <td th:text="${tempOrder.shippingMethod.methodName}"></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-small">
+                                <a th:href="@{/order/details/{id}(id=${tempOrder.orderid})}">
+                                    <button type="button" class="btn btn-primary btn-sm">Xem chi tiết</button>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"></div>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"></div>
+</body>
+</html>

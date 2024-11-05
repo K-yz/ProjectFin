@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Home</a></li>
+                <li>Blog No Sidebar</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page Banner Section End -->
+
+    <!-- Blog Section Start -->
+    <div class="shop-product-section section section-padding">
+        <div class="container">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-6">
+                <div class="col" th:each="post : ${posts}">
+                    <div class="blog">
+                        <a th:href="@{/post/details/{id}(id=${post.postsid})}" class="blog-thumb"><img loading="lazy" th:src="${post.image}" alt="Watch misni sdedn nises" width="348" height="232"></a>
+                        <div class="blog-content">
+                            <h4 class="blog-title"><a th:href="@{/post/details/{id}(id=${post.postsid})}"><td th:text="${post.name}"></td></a></h4>
+                            <ul class="blog-meta">
+                                <li><td th:text="${post.postDate}"></td></li>
+                                <!--<li><a th:href="@{/product/details/{id}(id=${post.postsid})}">0 Comments</a></li>-->
+                            </ul>
+                            <p><td th:text="${post.description}"></td></p>
+                            <a th:href="@{/post/details/{id}(id=${post.postsid})}" class="btn">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination Start -->
+            <ul class="pagination justify-content-center mt-4">
+                <li class="disabled"><a href="#prev"><i class="sli-arrow-left"></i></a></li>
+                <li><a class="active" href="#page=1">1</a></li>
+                <li><a href="#page=2">2</a></li>
+                <li><a href="#page=3">3</a></li>
+                <li><a href="#next"><i class="sli-arrow-right"></i></a></li>
+            </ul>
+            <!-- Pagination End -->
+        </div>
+    </div>
+    <!-- Blog Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th::href="@{/}">Home</a></li>
+                <li>Register</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page Banner Section End -->
+
+    <!-- Register Section Start -->
+    <!--<div class="section section-padding">
+        <div class="container">
+            <div class="login-register-form">
+                <h3 class="title">Create Account</h3>
+                <p>Please Register using account detail bellow.</p>
+                <form action="#">
+                    <div class="row row-cols-1 g-4">
+                        <div class="col"><input class="form-field" type="text" placeholder="First Name"></div>
+                        <div class="col"><input class="form-field" type="text" placeholder="Last Name"></div>
+                        <div class="col"><input class="form-field" type="email" placeholder="Email"></div>
+                        <div class="col"><input class="form-field" type="password" placeholder="Password"></div>
+                        <div class="col"><input class="btn btn-dark btn-primary-hover rounded-0 w-100" type="submit" value="Register"></div>
+                        <div class="col">Already have an account? <a th:href="@{/login}"><b>Login</b></a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>-->
+<div class="section section-padding">
+    <div class="container">
+        <div class="login-register-form">
+            <h3 class="title">Create Account</h3>
+            <p>Please Register using account details below.</p>
+
+            <!-- Sử dụng Thymeleaf để gửi form tới /register -->
+            <form th:action="@{/user/process_register}" method="POST">
+                <div class="row row-cols-1 g-4">
+                    <div class="col">
+                        <input class="form-field" type="text" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="col">
+                        <input class="form-field" type="text" name="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="col">
+                        <input class="form-field" type="text" name="phone" placeholder="Phone" required>
+                    </div>
+                    <div class="col">
+                        <input class="form-field" type="text" name="address" placeholder="Address" required>
+                    </div>
+                    <div class="col">
+                        <input class="form-field" type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="col">
+                        <input class="form-field" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="col">
+                        <input class="btn btn-dark btn-primary-hover rounded-0 w-100" type="submit" value="Register">
+                    </div>
+                    <div class="col">
+                        Already have an account? <a th:href="@{/user/login}"><b>Login</b></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Register Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+
+
+</html>

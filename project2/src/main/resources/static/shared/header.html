@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:fragment="header">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Kofi - Coffee Shop Website Template</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="Kofi - Coffee Shop Website Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+        <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+        <!-- Fonts CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com/">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;family=Oswald:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+        <!-- Vendor CSS (Bootstrap & Icon Font) -->
+        <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+
+        <!-- Icons CSS -->
+        <link rel="stylesheet" href="assets/css/plugins/simple-line-icons.min.css">
+
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </div>
+</head>
+<body>
+
+<div th:fragment="navbar">
+    <div class="header sticky-header section">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+
+                <!-- Logo Start -->
+                <div class="col-lg-2 col">
+                    <div class="header-logo">
+                        <a th:href="@{/}">
+                            <img src="assets/images/logo/logo-dark.png" width="125" height="42" alt="kofi logo">
+                            <img class="light" src="assets/images/logo/logo-light.png" width="125" height="42" alt="kofi logo">
+                        </a>
+                    </div>
+                </div>
+                <!-- Logo End -->
+
+                <!-- Menu Start -->
+                <div class="col d-none d-lg-block">
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="has-sub-menu">
+                                <a th:href="@{/}">Home</a>
+                            </li>
+
+                            <li>
+                                <a href="/shop-list-no-sidebar.html">Shop</a>
+                            </li>
+
+                            <li class="has-sub-menu">
+                                <a href="/templates/faq.html">Pages</a>
+
+                                <ul class="sub-menu">
+                                    <li><a href="/templates/faq.html">FAQ</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub-menu">
+                                <a href="/templates/blog-no-sidebar.html">Blog</a>
+
+                                <ul class="sub-menu">
+                                    <li><a href="/templates/blog-no-sidebar.html">Blog</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="/templates/contact.html">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Menu End -->
+
+                <!-- Action Start -->
+                <div class="col-auto">
+                    <div class="header-action">
+                        <div class="header-action-item">
+                            <button class="header-action-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-search"><i class="sli-magnifier"></i></button>
+                        </div>
+                        <div class="header-action-item">
+                            <button class="header-action-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart"><i class="sli-basket-loaded"><span class="count">02</span></i> <span class="amount">$229.00</span></button>
+                        </div>
+                        <div class="header-action-item dropdown">
+                            <button class="header-action-toggle" type="button" data-bs-toggle="dropdown"><i class="sli-settings"></i></button>
+                            <div class="dropdown-menu header-dropdown-menu">
+                                <h6 class="header-dropdown-menu-title">Currency</h6>
+                                <ul>
+                                    <li><a href="javascript:void(0)">USD - US Dollar</a></li>
+                                    <li><a href="javascript:void(0)">EUR - Euro</a></li>
+                                    <li><a href="javascript:void(0)">GBP - British Pound</a></li>
+                                </ul>
+                                <h6 class="header-dropdown-menu-title">Account</h6>
+                                <ul>
+                                    <li><a href="/templates/login.html">Login</a></li>
+                                    <li><a href="/templates/register.html">Register</a></li>
+                                    <li><a href="/templates/my-account.html">My Account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="header-action-item d-lg-none">
+                            <button class="header-action-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-header"><i class="sli-menu"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Action End -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="offcanvas offcanvas-end w-100 bg-dark border-0" id="offcanvas-search">
+        <div class="offcanvas-body d-flex align-items-center justify-content-center">
+            <button type="button" class="btn-close offcanvas-search-close-btn text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas-search-form">
+                <form action="#">
+                    <input type="search" name="q" placeholder="Search our store">
+                    <button type="submit"><i class="sli-magnifier"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="offcanvas offcanvas-end" id="offcanvas-cart">
+        <div class="offcanvas-header">
+            <h5>Shoping Cart</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div class="header-cart-body">
+                <div class="header-cart-products">
+                    <div class="header-cart-product">
+                        <div class="header-cart-product-thumb">
+                            <a href="product-details.html" class="header-cart-product-image"><img src="assets/images/products/cart/product-1.jpg" alt="House Coffee Original" width="90" height="103"></a>
+                            <button class="header-cart-product-remove"><i class="sli-close"></i></button>
+                        </div>
+                        <div class="header-cart-product-content">
+                            <h5 class="header-cart-product-title"><a href="product-details.html">House Coffee Original</a></h5>
+                            <span class="header-cart-product-quantity">1 x $110.00</span>
+                        </div>
+                    </div>
+                    <div class="header-cart-product">
+                        <div class="header-cart-product-thumb">
+                            <a href="product-details.html" class="header-cart-product-image"><img src="assets/images/products/cart/product-2.jpg" alt="Medium Roast Ground Coffee" width="90" height="103"></a>
+                            <button class="header-cart-product-remove"><i class="sli-close"></i></button>
+                        </div>
+                        <div class="header-cart-product-content">
+                            <h5 class="header-cart-product-title"><a href="product-details.html">Medium Roast Ground Coffee</a></h5>
+                            <span class="header-cart-product-quantity">1 x $19.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-cart-footer">
+                <h4 class="header-cart-total">Total: <span>$129.00</span></h4>
+                <div class="header-cart-buttons">
+                    <a href="checkout.html" class="btn btn-outline-dark btn-primary-hover">CHECKOUT</a>
+                    <a href="cart.html" class="btn btn-outline-dark btn-primary-hover">VIEW CART</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider Section Start -->
+    <div class="h2-hero-section section">
+        <div class="hero-slider hero-slider-2 swiper">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide hero-slide-2 bg-dark" style="background-image: url(assets/images/hero-slider/home-2/slide-1.png);">
+                    <div class="container">
+                        <div class="hero-slide-2-content">
+                            <h5 class="hero-slide-2-sub-title">Black coffee is awesome.</h5>
+                            <h2 class="hero-slide-2-title">TIME DISCOVER <br> COFFEE HOUSE</h2>
+                            <p class="hero-slide-2-text">Experience the decibels like your ears deserve to. Safe for the ears, very for the heart. A treat to your ears.</p>
+                            <div class="hero-slide-2-button">
+                                <a href="../templates/shop-left-sidebar.html" class="btn btn-primary btn-dark-hover">Explore More <i class="sli-basket-loaded"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide hero-slide-2 bg-dark" style="background-image: url(assets/images/hero-slider/home-2/slide-2.png);">
+                    <div class="container">
+                        <div class="hero-slide-2-content">
+                            <h5 class="hero-slide-2-sub-title">Black coffee is awesome.</h5>
+                            <h2 class="hero-slide-2-title">TIME DISCOVER <br> COFFEE HOUSE</h2>
+                            <p class="hero-slide-2-text">Experience the decibels like your ears deserve to. Safe for the ears, very for the heart. A treat to your ears.</p>
+                            <div class="hero-slide-2-button">
+                                <a href="../templates/shop-left-sidebar.html" class="btn btn-primary btn-dark-hover">Explore More <i class="sli-basket-loaded"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide hero-slide-2 bg-dark" style="background-image: url(assets/images/hero-slider/home-2/slide-3.jpg);">
+                    <div class="container">
+                        <div class="hero-slide-2-content text-center mx-auto">
+                            <h5 class="hero-slide-2-sub-title">Black coffee is awesome.</h5>
+                            <h2 class="hero-slide-2-title">TIME DISCOVER <br> COFFEE HOUSE</h2>
+                            <p class="hero-slide-2-text">Experience the decibels like your ears deserve to. Safe for the ears, very for the heart. A treat to your ears.</p>
+                            <div class="hero-slide-2-button">
+                                <a href="../templates/shop-left-sidebar.html" class="btn btn-primary btn-dark-hover">Explore More <i class="sli-basket-loaded"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev d-none d-md-flex"></div>
+            <div class="swiper-button-next d-none d-md-flex"></div>
+        </div>
+    </div>
+    <!-- Slider Section End -->
+
+</div>
+
+</body>
+</html>

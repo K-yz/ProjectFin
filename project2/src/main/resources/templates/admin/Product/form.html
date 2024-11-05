@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+
+        <!-- End Navbar -->
+        <div class="container">
+            <h3>Product Directory</h3>
+            <hr>
+            <p class="h4 mb-4">Save Product</p>
+
+            <h1 th:text="${product == null ? 'Add New Product' : 'Edit Product'}"></h1>
+
+            <form th:action="@{/product/save}" th:object="${product}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{productid}" />
+                <input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Name">
+                <input type="text" th:field="*{price}" class="form-control mb-4 col-4" placeholder="Price">
+                <input type="text" th:field="*{description}" class="form-control mb-4 col-4" placeholder="Description">
+
+
+                <select th:field="*{category.categoryid}" class="form-control mb-4 col-4">
+                    <option th:each="category : ${categories}"
+                            th:value="${category.categoryid}"
+                            th:text="${category.name}">
+                    </option>
+                </select>
+
+                <input type="file" name="imageFile" class="form-control mb-4 col-4">
+
+
+                <button type="submit" class="btn btn-info col-2">Save</button>
+            </form>
+
+            <hr>
+            <a href="/product/list">Back to Products List</a>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"/>
+</body>
+
+</html>

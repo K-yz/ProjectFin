@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+        <!-- End Navbar -->
+
+        <div class="container">
+            <h3>Category Directory</h3>
+            <hr>
+            <a href="/category/add"
+               class="btn btn-primary btn-sm mb-3"
+            >Add Category
+            </a>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempCategory: ${categories}">
+                    <td th:text="${tempCategory.categoryid}"></td>
+                    <td th:text="${tempCategory.name}"></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-small">
+                                <a th:href="@{/category/edit/{id}(id=${tempCategory.categoryid})}">
+                                    <button type="submit" class="btn btn-info btn-sm">
+                                        Update
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-small">
+                                <a th:href="@{/category/delete/{id}(id=${tempCategory.categoryid})}">
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="if (!(confirm('Are you sure you want to delete this feedback ?'))) return false;">
+                                        Delete
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center mb-0">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Payment Number</th>
+                            <th scope="col" class="text-end">Date & Time</th>
+                            <th scope="col" class="text-end">Amount</th>
+                            <th scope="col" class="text-end">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                <button
+                                        class="btn btn-icon btn-round btn-success btn-sm me-2"
+                                >
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                                <span class="badge badge-success">Completed</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<div th:replace="~{/admin/shared/header :: script}"/>
+
+</body>
+</html>

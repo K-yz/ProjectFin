@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+<body>
+<div th:replace="~{/shared/header :: navbar}"/>
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li>Verify Fail</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container text-center">
+    <h3>Sorry, we could not verify account. It maybe already verified,
+        or verification code is incorrect.</h3>
+</div>
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+</body>
+</html>

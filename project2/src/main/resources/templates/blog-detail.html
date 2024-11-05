@@ -1,0 +1,220 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li>Blog Details Left Sidebar</li>
+        </ul>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Blog Section Start -->
+<div class="shop-product-section section section-padding">
+    <div class="container">
+        <div class="row flex-lg-row-reverse gy-4">
+
+            <div class="col-lg-9 col-12 mb-8">
+                <div class="single-blog">
+                    <div class="single-blog-image"><img th:src="${post.image}" alt="Watch misni sdedn nises"></div>
+                    <div class="single-blog-content">
+                        <h1 class="single-blog-title"><td th:text="${post.name}"></td></h1>
+                        <ul class="single-blog-meta">
+                            <li>14 November, 2023</li>
+                            <li>HasTech Shopify Team</li>
+                        </ul>
+                        <div class="single-blog-description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprhendit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qei officia deser mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et</p>
+                            <blockquote>
+                                <p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.</p>
+                            </blockquote>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehendrit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto">
+                                <div class="single-blog-tags">
+                                    <span>Tags:</span>
+                                    <ul>
+                                        <li><a href="#">coffee</a></li>
+                                        <li><a href="#">tea</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="single-blog-share">
+                                    <span>Share:</span>
+                                    <ul>
+                                        <li><a href="#"><i class="sli-social-facebook"></i></a></li>
+                                        <li><a href="#"><i class="sli-social-twitter"></i></a></li>
+                                        <li><a href="#"><i class="sli-social-pinterest"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="next-prev-post-nav">
+                    <li><a href="#"><i class="sli-arrow-left"></i>Older Post</a></li>
+                    <li><a href="#"><i class="sli-arrow-right"></i>Newer Post</a></li>
+                </ul>
+                <div class="single-blog-comment">
+
+                    <div class="block-title-2">
+                        <h4 class="title">Comments (2)</h4>
+
+                    </div>
+
+                    <!-- Comment List Start -->
+                    <ul class="comment-list">
+                        <li>
+                            <div class="comment-item">
+                                <div class="comment-thumb"><img src="assets/images/testimonial/testimonial-1.png" alt="Edna Watson"></div>
+                                <div class="comment-content">
+                                    <div class="comment-meta">
+                                        <h5 class="comment-name">Edna Watson</h5>
+                                        <span class="comment-date">November 27, 2023</span>
+                                    </div>
+                                    <p>Thanks for always keeping your WordPress themes up to date. Your level of support and dedication is second to none.</p>
+                                    <a href="#" class="comment-reply">Reply</a>
+                                </div>
+                            </div>
+                            <ul class="comment-child">
+                                <li>
+                                    <div class="comment-item">
+                                        <div class="comment-thumb"><img src="assets/images/testimonial/testimonial-2.png" alt="Hester Perkins"></div>
+                                        <div class="comment-content">
+                                            <div class="comment-meta">
+                                                <h5 class="comment-name">Hester Perkins</h5>
+                                                <span class="comment-date">November 27, 2023</span>
+                                            </div>
+                                            <p>Thanks for always keeping your WordPress themes up to date. Your level of support and dedication is second to none.</p>
+                                            <a href="#" class="comment-reply">Reply</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Comment List End -->
+
+                    <div class="block-title-2">
+                        <h4 class="title">Leave your thought here</h4>
+
+                    </div>
+
+                    <!-- Comment Form Start -->
+                    <div class="comment-form">
+                        <form action="#">
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <label for="name">Name</label>
+                                    <input class="form-field" id="name" name="name" type="text" placeholder="Enter your name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="email">Email</label>
+                                    <input class="form-field" id="email" name="email" type="email" placeholder="john.smith@example.com">
+                                </div>
+                                <div class="col-12">
+                                    <label for="message">Message</label>
+                                    <textarea class="form-field" id="message" name="message" placeholder="Write your messages here"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-dark btn-primary-hover rounded-0" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Comment Form End -->
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-12 mb-8">
+                <div class="blog-sidebar-item">
+                    <h4 class="blog-sidebar-title">Search</h4>
+                    <div class="blog-sidebar-body">
+                        <div class="blog-sidebar-search">
+                            <form action="#">
+                                <input class="form-field" type="text" placeholder="Search">
+                                <button class="btn"><i class="sli-magnifier"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-sidebar-item">
+                    <h4 class="blog-sidebar-title">Recent Post</h4>
+                    <div class="blog-sidebar-body">
+                        <div class="blog-sidebar-post">
+                            <a href="blog-details-left-sidebar.html" class="blog-sidebar-post-thumb"><img src="assets/images/blog/blog-1.jpg" alt="Watch misni sdedn nises"></a>
+                            <div class="blog-sidebar-post-content">
+                                <span class="blog-sidebar-post-date">14 November, 2023</span>
+                                <h5 class="blog-sidebar-post-title"><a href="blog-details-left-sidebar.html">Watch misni sdedn nises</a></h5>
+                            </div>
+                        </div>
+                        <div class="blog-sidebar-post">
+                            <a href="blog-details-left-sidebar.html" class="blog-sidebar-post-thumb"><img src="assets/images/blog/blog-2.jpg" alt="Jininsi smart watch mnisyh nise"></a>
+                            <div class="blog-sidebar-post-content">
+                                <span class="blog-sidebar-post-date">14 November, 2023</span>
+                                <h5 class="blog-sidebar-post-title"><a href="blog-details-left-sidebar.html">Jininsi smart watch mnisyh nise</a></h5>
+                            </div>
+                        </div>
+                        <div class="blog-sidebar-post">
+                            <a href="blog-details-left-sidebar.html" class="blog-sidebar-post-thumb"><img src="assets/images/blog/blog-3.jpg" alt="Minis mnies anide ewnis"></a>
+                            <div class="blog-sidebar-post-content">
+                                <span class="blog-sidebar-post-date">14 November, 2023</span>
+                                <h5 class="blog-sidebar-post-title"><a href="blog-details-left-sidebar.html">Minis mnies anide ewnis</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-sidebar-item">
+                    <h4 class="blog-sidebar-title">Archive</h4>
+                    <div class="blog-sidebar-body">
+                        <ul class="blog-sidebar-archive">
+                            <li><a href="#">January 2023</a></li>
+                            <li><a href="#">December 2023</a></li>
+                            <li><a href="#">November 2023</a></li>
+                            <li><a href="#">October 2023</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-sidebar-item">
+                    <h4 class="blog-sidebar-title">Tags</h4>
+                    <div class="blog-sidebar-body">
+                        <div class="blog-sidebar-tag">
+                            <a href="#" class="">black</a>
+                            <a href="#" class="">coffee</a>
+                            <a href="#" class="">cold</a>
+                            <a href="#" class="">mug</a>
+                            <a href="#" class="">news</a>
+                            <a href="#" class="">shop</a>
+                            <a href="#" class="">smartwatch</a>
+                            <a href="#" class="">tea</a>
+                            <a href="#" class="">watch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Blog Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+</html>

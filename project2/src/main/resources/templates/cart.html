@@ -1,0 +1,231 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+    <!--<meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li>Shopping Cart</li>
+        </ul>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Shopping Cart Section Start -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row mb-n6 mb-lg-n10">
+
+            <div class="col-12 mb-6 mb-lg-10">
+
+                <!-- Cart Table For Tablet & Up Devices Start -->
+                <table class="cart-table table table-bordered text-center align-middle mb-6 d-none d-md-table">
+                    <thead>
+                    <tr>
+                        <th class="image">Image</th>
+                        <th class="title">Product</th>
+                        <th class="price">Price</th>
+                        <th class="quantity">Quantity</th>
+                        <th class="total">Total</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                    <!-- Lặp qua các sản phẩm trong giỏ hàng -->
+                    <tr th:each="item : ${cart.items}">
+                        <!-- Hiển thị hình ảnh sản phẩm -->
+                        <td>
+                            <a th:if="${item.product != null}" th:href="@{/product/details/{id}(id=${item.product.productid})}">
+                                <!--<img th:src="@{'/images/products/single/' + ${item.product.image}}" alt="Product Image">-->
+                                <img loading="lazy" th:src="${item.product.image}"alt="Product Image" >
+                            </a>
+                            <span th:if="${item.product == null}">No Image</span>
+                        </td>
+                        <!-- Hiển thị tên sản phẩm -->
+                        <td th:if="${item.product != null}">
+                            <a th:text="${item.product.name}"></a>
+                        </td>
+                        <td th:if="${item.product == null}">
+                            <span>No Product</span>
+                        </td>
+                        <!-- Hiển thị giá sản phẩm -->
+                        <td th:if="${item.product != null}">
+                            <a th:text="${item.product.price}"></a>
+                        </td>
+
+                        <td th:if="${item.product == null}">
+                            <span>N/A</span>
+                        </td>
+
+                        <!-- Hiển thị số lượng sản phẩm và nút tăng giảm -->
+                        <td th:if="${item.product != null}">
+                            <div class="product-quantity-count">
+                                <button class="dec qty-btn"
+                                        th:disabled="${item.quantity <= 1}"
+                                        th:onclick="'updateQuantity(' + ${item.product.productid} + ', ' + (${item.quantity} - 1) + ')'">-</button>
+                                <input class="product-quantity-box" type="text" name="quantity" th:value="${item.quantity}" readonly>
+                                <button class="inc qty-btn"
+                                        th:onclick="'updateQuantity(' + ${item.product.productid} + ', ' + (${item.quantity} + 1) + ')'">+</button>
+                            </div>
+                        </td>
+
+                        <td th:if="${item.product == null}">
+                            <span>N/A</span>
+                        </td>
+                        <!-- Hiển thị tổng giá của sản phẩm (giá * số lượng) -->
+                        <td th:if="${item.product != null}">
+                            <span th:text="${item.product.price * item.quantity}"></span>
+                        </td>
+
+                        <td th:if="${item.product == null}">
+                            <span>N/A</span>
+                        </td>
+                        <!-- Nút xóa sản phẩm khỏi giỏ hàng -->
+                        <td th:if="${item.product != null}">
+                            <button class="remove-btn" th:onclick="'removeFromCart(' + ${item.product.productid} + ')'">
+                                <i class="sli-close"></i>
+                            </button>
+                        </td>
+                        <td th:if="${item.product == null}">
+                            <span>N/A</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- Cart Table For Tablet & Up Devices End -->
+
+                <!-- Cart Action Buttons Start -->
+                <div class="row justify-content-between gap-3">
+                    <div class="col-auto"><button class="btn btn-outline-dark btn-primary-hover rounded-0"><a th:href="@{/products}">Continue Shopping</a></button></div>
+                    <!--<div class="col-auto d-flex flex-wrap gap-3">
+                        <button class="btn btn-outline-dark btn-primary-hover rounded-0">Update Cart</button>
+                        <button class="btn btn-outline-dark btn-primary-hover rounded-0">Clear Cart</button>
+                    </div>-->
+                </div>
+                <!-- Cart Action Buttons End -->
+
+            </div>
+
+            <!-- Cart Totals Start -->
+            <div class="col">
+                <div class="cart-totals">
+                    <h4 class="title">Cart totals</h4>
+                    <table class="table table-borderless bg-transparent">
+                        <tbody>
+                        <tr class="subtotal">
+                            <th>Subtotal</th>
+                            <td><span class="amount" th:text="${total}"></span></td>
+                        </tr>
+                        <tr class="total">
+                            <th>Total</th>
+                            <td><strong><span class="amount" th:text="${total}"></span></strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a th:href="@{/checkout/payment}" class="btn btn-dark btn-primary-hover rounded-0">Proceed to checkout</a>
+                </div>
+            </div>
+            <!-- Cart Totals End -->
+
+        </div>
+    </div>
+</div>
+<!-- Shopping Cart Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+<!--<script>
+    function updateQuantity(productId, newQuantity) {
+        // Lấy CSRF token từ thẻ meta trong HTML
+        let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        fetch(`/cart/update/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken // Thêm CSRF token vào header
+            },
+            body: JSON.stringify({ quantity: newQuantity })
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Tải lại trang sau khi thành công
+                } else {
+                    alert("Có lỗi xảy ra khi cập nhật số lượng.");
+                }
+            });
+    }
+
+
+    function removeFromCart(productId) {
+        let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        fetch(`/cart/remove/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken // Thêm CSRF token vào header
+            }
+        }).then(response => {
+            if (response.ok) {
+                location.reload();  // Làm mới trang để cập nhật giỏ hàng
+            } else {
+                alert("Có lỗi xảy ra khi xóa sản phẩm.");
+            }
+        });
+    }
+</script>-->
+
+<script>
+    function updateQuantity(productId, newQuantity) {
+        fetch(`/cart/update/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: newQuantity })
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Tải lại trang sau khi thành công
+                } else {
+                    alert("Có lỗi xảy ra khi cập nhật số lượng.");
+                }
+            });
+    }
+
+    function removeFromCart(productId) {
+        fetch(`/cart/remove/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                location.reload();  // Làm mới trang để cập nhật giỏ hàng
+            } else {
+                alert("Có lỗi xảy ra khi xóa sản phẩm.");
+            }
+        });
+    }
+</script>
+
+
+</body>
+
+</html>

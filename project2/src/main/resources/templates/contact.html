@@ -1,0 +1,110 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Home</a></li>
+                <li>Contact Us</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page Banner Section End -->
+
+    <!-- Contact Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row row-cols-md-2 row-cols-1 g-4">
+                <div class="col">
+                    <div class="block-title">
+
+                        <h2 class="sub-title">Keep in Touch</h2>
+                    </div>
+                    <ul class="contact-info">
+                        <li><i class="sli-location-pin"></i>Address goes here, street, <br> Crossroad 123.</li>
+                        <li><i class="sli-envelope"></i>info@example.com <br> info@example.com</li>
+                        <li><i class="sli-phone"></i>+1 35 776 859 000 <br> +1 35 776 859 011</li>
+                    </ul>
+                </div>
+                <!--<div class="col">
+                    <div class="contact-form">
+                        <form id="contact-form" action="https://htmldemo.net/kofi/kofi/assets/php/contact-mail.php">
+                            <div class="row row-cols-1 g-4">
+                                <div class="col-sm-6 col-md-12 col-lg-6 col">
+                                    <input class="form-field" name="name" type="text" placeholder="Name">
+                                </div>
+                                <div class="col-sm-6 col-md-12 col-lg-6 col">
+                                    <input class="form-field" name="email" type="email" placeholder="Email">
+                                </div>
+                                <div class="col">
+                                    <input class="form-field" name="subject" type="text" placeholder="Subject">
+                                </div>
+                                <div class="col">
+                                    <textarea class="form-field" name="message" placeholder="Message">
+
+                                    </textarea>
+                                </div>
+                                <div class="col"><input class="btn btn-dark btn-primary-hover rounded-0 w-100" type="submit" value="Send Message"></div>
+                            </div>
+                        </form>
+                        <p class="form-messege"></p>
+                    </div>
+                </div>-->
+                <div class="col">
+                    <div class="contact-form">
+                        <form th:action="@{/contact/save}" th:object="${feedback}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{feedbackid}"/>
+
+                            <div class="row row-cols-1 g-4">
+                                <div class="col-sm-6 col-md-12 col-lg-6">
+                                    <input type="text" th:field="*{name}" class="form-field form-control mb-4" placeholder="Name" required>
+                                </div>
+                                <div class="col-sm-6 col-md-12 col-lg-6">
+                                    <input type="email" th:field="*{email}" class="form-field form-control mb-4" placeholder="Email" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" th:field="*{subject}" class="form-field form-control mb-4" placeholder="Subject" required>
+                                </div>
+                                <div class="col">
+                                    <textarea th:field="*{message}" class="form-field form-control mb-4" placeholder="Message" required></textarea>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-dark btn-primary-hover rounded-0 w-100">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="form-message"></p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section End -->
+
+    <!-- Contact Map Section Start -->
+    <div class="section section-padding pt-0">
+        <div class="container">
+            <div class="ratio ratio-21x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114896.59987487551!2d-122.41969332729698!3d47.609610451096295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490102c93e83355%3A0x102565466944d59a!2sSeattle%2C%20WA%2C%20USA!5e0!3m2!1sen!2sbd!4v1644128683621!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Map Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+</html>

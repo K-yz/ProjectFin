@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Home</a></li>
+                <li>My Account</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page Banner Section End -->
+
+    <!-- My Account Section Start -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row g-lg-10 g-6">
+
+            <!-- My Account Tab List Start -->
+            <div class="col-lg-4 col-12">
+                <ul class="my-account-tab-list nav">
+                    <li><a href="#dashboad" class="active" data-bs-toggle="tab"><i class="sli-home"></i> Dashboard</a></li>
+                    <li><a href="#orders" data-bs-toggle="tab"><i class="sli-notebook"></i> Orders</a></li>
+                    <li><a href="#download" data-bs-toggle="tab"><i class="sli-cloud-download"></i> Download</a></li>
+                    <li><a href="#address" data-bs-toggle="tab"><i class="sli-map"></i> address</a></li>
+                    <li><a href="#account-info" data-bs-toggle="tab"><i class="sli-user"></i> Account Details</a></li>
+                    <li><a th:href="@{/user/logout}">Logout</a></li>
+                </ul>
+            </div>
+            <!-- My Account Tab List End -->
+
+            <!-- My Account Tab Content Start -->
+            <div class="col-lg-8 col-12">
+                <div class="tab-content">
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade show active" id="dashboad">
+                        <div class="myaccount-content dashboad">
+                            <div class="alert alert-light" >Hello  <b>didiv91396</b> (not <b>didiv91396</b>? <a href="login.html">Log out</a>)</div>
+                            <p >From your account dashboard you can  view your <u>recent orders</u>, manage your <u>shipping and billing addresses</u>, and <u>edit your password and account details</u>.</p>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="orders">
+                        <div class="myaccount-content order">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Aug 22, 2023</td>
+                                        <td>Pending</td>
+                                        <td>$3000</td>
+                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>July 22, 2023</td>
+                                        <td>Approved</td>
+                                        <td>$200</td>
+                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>June 12, 2017</td>
+                                        <td>On Hold</td>
+                                        <td>$990</td>
+                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="download">
+                        <div class="myaccount-content download">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Date</th>
+                                        <th>Expire</th>
+                                        <th>Download</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Haven - Free Real Estate PSD Template</td>
+                                        <td>Aug 22, 2023</td>
+                                        <td>Yes</td>
+                                        <td><a href="#"><i class="sli-cloud-download mr-1"></i> <b>Download File</b></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HasTech - Profolio Business Template</td>
+                                        <td>Sep 12, 2023</td>
+                                        <td>Never</td>
+                                        <td><a href="#"><i class="sli-cloud-download mr-1"></i> <b>Download File</b></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="address">
+                        <div class="myaccount-content address">
+                            <div class="alert alert-light">The following addresses will be used on the checkout page by default.</div>
+                            <div class="row learts-mb-n30">
+                                <div class="col-md-6 col-12">
+                                    <h4 class="title">Billing Address <a href="#" class="edit-link">edit</a></h4>
+                                    <address>
+                                        <p><strong>Alex Tuntuni</strong></p>
+                                        <p>1355 Market St, Suite 900 <br>
+                                            San Francisco, CA 94103</p>
+                                        <p>Mobile: (123) 456-7890</p>
+                                    </address>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <h4 class="title">Shipping Address <a href="#" class="edit-link">edit</a></h4>
+                                    <address>
+                                        <p><strong>Alex Tuntuni</strong></p>
+                                        <p>1355 Market St, Suite 900 <br>
+                                            San Francisco, CA 94103</p>
+                                        <p>Mobile: (123) 456-7890</p>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+
+                    <form action="/account/update" method="post" th:object="${userDTO}">
+<!--                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                        <div class="tab-pane fade" id="account-info">
+                            <div class="myaccount-content account-details">
+                                <div class="account-details-form">
+                                    <form action="#">
+                        <div class="col-md-6 col-12">
+                            <div class="single-input-item">
+                                <label for="first-name">First Name <abbr class="required">*</abbr></label>
+                                <input class="form-field" type="text" id="first-name" th:field="*{firstName}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="single-input-item">
+                                <label for="last-name">Last Name <abbr class="required">*</abbr></label>
+                                <input class="form-field" type="text" id="last-name" th:field="*{lastName}" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="email">Email Address <abbr class="required">*</abbr></label>
+                            <input class="form-field" type="email" id="email" th:field="*{email}" required>
+                        </div>
+                        <!-- Các trường mật khẩu -->
+                        <div class="col-12">
+                            <label for="current-pwd">Current Password <abbr class="required">*</abbr></label>
+                            <input class="form-field" type="password" id="current-pwd" name="current-pwd" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="new-pwd">New Password</label>
+                            <input class="form-field" type="password" id="new-pwd" name="new-pwd">
+                        </div>
+                        <div class="col-12">
+                            <label for="confirm-pwd">Confirm New Password</label>
+                            <input class="form-field" type="password" id="confirm-pwd" name="confirm-pwd">
+                        </div>
+                        <button class="btn btn-dark btn-primary-hover" type="submit">Save Changes</button>
+                    </form>
+
+
+                    <!-- CSRF Token -->
+                    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+                    <!-- Success/Error message -->
+                    <div th:if="${success}"     class="alert alert-success">
+                        <p th:text="${success}"></p>
+                    </div>
+                    <div th:if="${error}" class="alert alert-danger">
+                        <p th:text="${error}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+
+   <!-- My Account Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+</body>
+
+
+</html>

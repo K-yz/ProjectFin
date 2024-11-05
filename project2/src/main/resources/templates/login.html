@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+<div class="page-banner-section section">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li>Login</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="section section-padding">
+    <div class="container">
+        <div class="login-register-form">
+            <h3 class="title">Login</h3>
+            <p>Please Register using account detail below.</p>
+
+            <form th:action="@{/login}" method="POST">
+                <div class="row row-cols-1 g-4">
+
+                    <div class="col">
+                        <input class="form-field" type="email" name="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="col">
+                        <input class="form-field" type="password" name="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="col">
+                        <input class="btn btn-dark btn-primary-hover rounded-0 w-100" type="submit" value="Sign In">
+                    </div>
+
+                    <div class="col">
+                        Don't have an account? <a th:href="@{/register}"><b>Create One</b></a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+</body>
+
+</html>

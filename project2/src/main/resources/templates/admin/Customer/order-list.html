@@ -1,0 +1,39 @@
+<html>
+<head>
+    <div th:replace="~{/admin/shared/header :: header}"/>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <div class="main-panel">
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+        <div class="container">
+            <h3>Orders for <span th:text="${customer.name}"></span></h3>
+            <hr>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Shipping Method</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderid}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${order.status}"></td>
+                    <td th:text="${order.shippingMethod.methodName}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
+    </div>
+</div>
+<div th:replace="~{/admin/shared/header :: script}"/>
+</body>
+</html>
