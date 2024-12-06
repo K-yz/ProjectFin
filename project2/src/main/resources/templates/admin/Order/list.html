@@ -17,9 +17,32 @@
         <div th:replace="~{/admin/shared/header :: navbar-header}"></div>
 
         <!-- End Navbar -->
+
         <div class="container">
             <h3>Order Directory</h3>
             <hr>
+            <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+
+                <form method="get" action="/order/list"   class="row gx-2 align-items-center mb-3">
+
+                    <div class="col-md-7">
+                        <select name="status" class="form-select">
+                            <option th:selected="${currentStatus == null}" value="">All</option>
+                            <option th:selected="${currentStatus == 'Confirm Order'}" value="Confirm Order">Confirm Order</option>
+                            <option th:selected="${currentStatus == 'Pending'}" value="Pending">Pending</option>
+                            <option th:selected="${currentStatus == 'Shipping'}" value="Shipping">Shipping</option>
+                            <option th:selected="${currentStatus == 'Canceling'}" value="Canceling">Canceling</option>
+                            <option th:selected="${currentStatus == 'Is Preparing'}" value="Is Preparing">Is Preparing</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-search"></i> Filter
+                        </button>
+                    </div>
+                </form>
+            </nav>
 
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
@@ -31,6 +54,7 @@
                     <th>Status</th>
                     <th>Payment Method</th>
                     <th>Shipping Method</th>
+                    <th>Set Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -41,13 +65,27 @@
                     <td th:text="${tempOrder.orderDate}"></td>
                     <td th:text="${tempOrder.price}"></td>
                     <td th:text="${tempOrder.status}"></td>
+
                     <td th:text="${tempOrder.paymentMethod.methodName}"></td>
                     <td th:text="${tempOrder.shippingMethod.methodName}"></td>
+                    <td>
+                        <form method="post" th:action="@{/checkout/update-status/{orderId}(orderId=${tempOrder.orderid})}">
+                            <select name="status" class="form-select form-select-sm"
+                                    onchange="this.form.submit()" style="width: auto;">
+                                <option th:selected="${tempOrder.status == 'Pending'}" value="Pending">Pending</option>
+                                <option th:selected="${tempOrder.status == 'Confirm Order'}" value="Confirm Order">Confirm Order</option>
+                                <option th:selected="${tempOrder.status == 'Shipping'}" value="Shipping">Shipping</option>
+                                <option th:selected="${tempOrder.status == 'Canceling'}" value="Canceling">Canceling</option>
+                                <option th:selected="${tempOrder.status == 'Is Preparing'}" value="Is Preparing">Is Preparing</option>
+                            </select>
+                        </form>
+                    </td>
+
                     <td>
                         <div class="row">
                             <div class="col-small">
                                 <a th:href="@{/order/details/{id}(id=${tempOrder.orderid})}">
-                                    <button type="button" class="btn btn-primary btn-sm">Xem chi tiết</button>
+                                    <button type="button" class="btn btn-primary btn-sm">Detail</button>
                                 </a>
                             </div>
                         </div>
@@ -62,7 +100,17 @@
 
     </div>
 </div>
+<script>
+    /*document.querySelectorAll('select[name="status"]').forEach(select => {
+        select.addEventListener('change', function () {
+            /!*if (confirm("Are you sure you want to change the status?")) {
+                this.form.submit();
+            }*!/
+            this.form.submit();
+        });
+    });*/
 
+</script>
 <!--   Core JS Files   -->
 <div th:replace="~{/admin/shared/header :: script}"></div>
 </body>

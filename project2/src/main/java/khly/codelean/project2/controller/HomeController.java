@@ -1,10 +1,11 @@
 package khly.codelean.project2.controller;
 
 
+import jakarta.servlet.http.HttpSession;
+import khly.codelean.project2.cart.ShoppingCart;
 import khly.codelean.project2.dao.*;
-import khly.codelean.project2.entity.Feedback;
-import khly.codelean.project2.entity.Order;
-import khly.codelean.project2.entity.Product;
+import khly.codelean.project2.entity.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private ShippingMethodRepository shippingMethodRepository;
 
     private final UserRepository userRepo;
 
@@ -31,6 +36,10 @@ public class HomeController {
     private final PostsRepository postsRepository;
 
     private final OrderRepository orderRepository;
+
+    @Autowired
+    private SizeRepository sizeRepository;
+
 
     public HomeController(UserRepository userRepo, FeedbackRepository feedbackRepository, ProductRepository productRepository, FAQRepository faqRepository, PostsRepository postsRepository, OrderRepository orderRepository) {
         this.userRepo = userRepo;
@@ -51,45 +60,24 @@ public class HomeController {
         return "home";
     }
 
-    /*@GetMapping("/products")
-    public String showProduct(Model model) {
-        model.addAttribute("products", productRepository.findAll());
-        return "shop-list-no-sidebar";
-    }*/
-    /*@GetMapping("/products")
-    public String listProducts(Model model, @RequestParam(name = "sort", required = false) String sort) {
-
-        List<Product> products;
-
-        if ("asc".equals(sort)) {
-            products = productRepository.findAllByOrderByPriceAsc();
-        } else if ("desc".equals(sort)) {
-            products = productRepository.findAllByOrderByPriceDesc();
-        } else {
-            products = productRepository.findAll();
-        }
-
-        model.addAttribute("products", products);
-        return "shop-list-no-sidebar";
-    }*/
 
     @GetMapping("/products")
     public String listProducts(Model model,
                                @RequestParam(name = "sort", required = false) String sort,
                                @RequestParam(name = "page", defaultValue = "0") int page) {
-        Pageable pageable = PageRequest.of(page, 5); // 5 sản phẩm mỗi trang
+        Pageable pageable = PageRequest.of(page, 5);
         Page<Product> productPage;
 
-        // Kiểm tra tham số 'sort' để sắp xếp danh sách sản phẩm
         if ("asc".equals(sort)) {
             productPage = productRepository.findAllByOrderByPriceAsc(pageable);
         } else if ("desc".equals(sort)) {
             productPage = productRepository.findAllByOrderByPriceDesc(pageable);
         } else {
-            productPage = productRepository.findAll(pageable); // Trả về trang sản phẩm không sắp xếp
+            productPage = productRepository.findAll(pageable);
         }
 
-        // Lấy danh sách sản phẩm từ Page<Product> bằng getContent()
+
+
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
@@ -97,17 +85,24 @@ public class HomeController {
         model.addAttribute("searchQuery", "");
 
 
-        return "shop-list-no-sidebar"; // Trả về tên template cho view
+        List<Size> sizes = new ArrayList<>();
+        for (Product product : productPage.getContent()) {
+            sizes.addAll(product.getSizes());
+        }
+        model.addAttribute("sizes", sizes);
+
+
+        return "shop-list-no-sidebar";
     }
 
 
-    @GetMapping("/faq")
+    @GetMapping("/Faq")
     public String viewFAQs(Model model) {
         model.addAttribute("faqs", faqRepository.findAll());
         return "faq";
     }
 
-    @GetMapping("/blog")
+    @GetMapping("/Blog")
     public String showBlog(Model model) {
         model.addAttribute("posts", postsRepository.findAll());
         return "blog-no-sidebar";
@@ -130,11 +125,19 @@ public class HomeController {
     }
 
 
-    @GetMapping("/product-detail")
-    public String listProduct(Model model) {
-        model.addAttribute("products", productRepository.findAll());
+
+
+    @GetMapping("/details/{id}")
+    public String getProductDetails(@PathVariable Long id, Model model) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        model.addAttribute("product", product);
+        model.addAttribute("sizes", product.getSizes());
         return "product-details-thumbnail-right";
     }
+
+
+
+
 
     @GetMapping("/login")
     public String showLogin() {
@@ -147,6 +150,18 @@ public class HomeController {
     }
 
 
+    @ModelAttribute("totalItems")
+    public int getTotalItems(HttpSession session) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        return cart != null ? cart.getTotalItems() : 0;
+    }
+
+    // Lấy tổng giá trị giỏ hàng
+    @ModelAttribute("totalPrice")
+    public BigDecimal getTotalPrice(HttpSession session) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        return cart != null ? cart.getTotal() : BigDecimal.ZERO;
+    }
 
 
 

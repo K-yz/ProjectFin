@@ -23,354 +23,597 @@
     <!-- Product Section Start -->
     <div class="shop-product-section section section-padding">
         <div class="container">
+            <div class="row mb-n8">
+
+                <div class="col-lg-9 col-12 mb-8">
+
+
+
+                    <div class="shop-top-bar">
+
+                        <div class="shop-top-bar-item">
+                            <label for="SortBy">Sort by :</label>
+                            <select name="SortBy" id="SortBy" onchange="sortProducts()">
+                                <option value="manual">Featured</option>
+                                <option value="price-ascending">Price, low to high</option>
+                                <option value="price-descending">Price, high to low</option>
+                            </select>
+                        </div>
+
+                        <!--<form action="/product/search" method="get">
+                            <input type="text" name="query" placeholder="Search..." />
+                            <button type="submit">Search</button>
+                        </form>-->
+
+                        <form id="searchbox" action="/product/search" method="get">
+                            <input class="textarea" size="15" type="text" name="query" placeholder="Search here..." />
+                            <input id="button-submit" type="submit" value="" />
+                        </form>
+
+                        <div class="shop-top-bar-item">
+                            <p>Showing 1 - 12 of 25 result</p>
+                        </div>
+
+                        <div class="shop-top-bar-item">
+                            <label for="paginateBy">Show :</label>
+                            <select name="paginateBy" id="paginateBy">
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12" selected>12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+
+                        <div class="shop-top-bar-item">
+                            <div class="nav list-grid-toggle">
+                                <button data-bs-toggle="tab" data-bs-target="#product-grid"><i class="sli-grid"></i></button>
+                                <button class="active" data-bs-toggle="tab" data-bs-target="#product-list"><i class="sli-menu"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Shop Top Bar End -->
+
+                    <!-- Product Tab Start -->
+                    <div class="tab-content" id="shopProductTabContent">
+                        <div class="tab-pane fade" id="product-grid">
+                            <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 mb-n6">
+
+                                <!--<div class="col mb-6">
+                                    <div class="product">
+                                        <div class="product-thumb">
+                                            <a href="product-details.html" class="product-image"><img loading="lazy" src="../static/assets/images/products/product-1.png" alt="House Coffee Original" width="268" height="306"></a>
+
+
+                                            <div class="product-badge-left">
+                                                <span class="product-badge-new">new</span>
+                                            </div>
+
+                                            <div class="product-badge-right">
+                                                <span class="product-badge-sale">sale</span>
+                                                <span class="product-badge-sale">-15%</span>
+
+                                            </div>
+                                            <div class="product-action">
+                                                <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal"><i class="sli-magnifier"></i></button>
+                                                <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
+                                                <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
+                                                <button class="product-action-btn" data-tooltip-text="Add to cart"><i class="sli-bag"></i></button>
+                                            </div>
+
+                                            <div class="product-variation">
+                                                <div class="product-variation-type">
+                                                    <button class="product-variation-type-btn" data-tooltip-text="White"><img loading="lazy" src="../static/assets/images/products/variation/type/type-1.jpg" alt="white" width="23" height="23"></button>
+                                                    <button class="product-variation-type-btn" data-tooltip-text="Gold"><img loading="lazy" src="../static/assets/images/products/variation/type/type-2.jpg" alt="gold" width="23" height="23"></button>
+                                                    <button class="product-variation-type-btn" data-tooltip-text="Black"><img loading="lazy" src="../static/assets/images/products/variation/type/type-3.jpg" alt="black" width="23" height="23"></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="product-content">
+
+                                            <h5 class="product-title"><a href="product-details.html">House Coffee Original</a></h5>
+                                            <div class="product-price"><del>$130.00</del>$110.00</div>
+                                            <div class="product-rating">
+                                                <span class="product-rating-bg"><span class="product-rating-active" style="width: 90%;"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="row" th:each="tempProduct: ${products}">
+                                    <div class="col mb-6">
+                                        <div class="product">
+                                            <div class="product-thumb">
+
+                                                <a th:href="@{/product/details/{id}(id=${tempProduct.productid})}" class="product-image">
+                                                    <img loading="lazy" th:src="${tempProduct.image}" alt="Premium Roast Coffee" width="268" height="306">
+                                                </a>
+
+                                                <div class="product-action">
+
+                                                    <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal">
+                                                        <i class="sli-magnifier"></i>
+                                                    </button>
+
+                                                    <!-- <select name="size" required>
+                                                         <option value="" disabled selected>&#45;&#45; Choose Size &#45;&#45;</option>
+                                                         <option th:each="size : ${sizes}" th:value="${size.id}" th:text="${size.name}"></option>
+                                                     </select>-->
+
+                                                    <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
+                                                    <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
+
+                                                    <!--<button class="product-action-btn" data-tooltip-text="Add to cart">
+                                                        <i class="sli-bag"></i>
+                                                    </button>-->
+                                                   <!-- <form th:action="@{/cart/add/{productId}(productId=${tempProduct.productid})}" method="post">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit" class="product-action-btn" data-tooltip-text="Add to cart">
+                                                            <i class="sli-basket-loaded"></i>
+                                                        </button>
+                                                    </form>-->
+                                                </div>
+
+
+                                            </div>
+                                            <div class="product-content">
+
+                                                <h5 class="product-title"><a th:href="@{/product/details/{id}(id=${tempProduct.productid})}"><td th:text="${tempProduct.name}"></td></a></h5>
+                                                <div class="product-price"><td th:text="${tempProduct.price}"></td></div>
+                                                <div class="product-rating">
+                                                    <span class="product-rating-bg"><span class="product-rating-active" style="width: 80%;"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="product-list">
+                            <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 gy-4">
+                                <!--<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 gy-4">-->
+
+                                <!--<div class="col mb-6">
+                                    <div class="product product-list">
+                                        <div class="product-thumb">
+                                            <a href="product-details.html" class="product-image"><img loading="lazy" src="../static/assets/images/products/product-1.png" alt="House Coffee Original" width="268" height="306"></a>
+
+
+                                            <div class="product-badge-left">
+                                                <span class="product-badge-new">new</span>
+                                            </div>
+
+                                            <div class="product-badge-right">
+                                                <span class="product-badge-sale">sale</span>
+                                                <span class="product-badge-sale">-15%</span>
+
+                                            </div>
+                                            <div class="product-action">
+                                                <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal"><i class="sli-magnifier"></i></button>
+                                            </div>
+
+                                            <div class="product-variation">
+                                                <div class="product-variation-type">
+                                                    <button class="product-variation-type-btn" data-tooltip-text="White"><img loading="lazy" src="../static/assets/images/products/variation/type/type-1.jpg" alt="white" width="23" height="23"></button>
+                                                    <button class="product-variation-type-btn" data-tooltip-text="Gold"><img loading="lazy" src="../static/assets/images/products/variation/type/type-2.jpg" alt="gold" width="23" height="23"></button>
+                                                    <button class="product-variation-type-btn" data-tooltip-text="Black"><img loading="lazy" src="../static/assets/images/products/variation/type/type-3.jpg" alt="black" width="23" height="23"></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="product-content">
+
+                                            <h5 class="product-title"><a href="product-details.html">House Coffee Original</a></h5>
+                                            <p class="product-excerpt">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,</p>
+                                            <div class="product-price"><del>$130.00</del>$110.00</div>
+                                            <div class="product-rating">
+                                                <span class="product-rating-bg"><span class="product-rating-active" style="width: 90%;"></span></span>
+                                            </div>
+                                            <div class="product-action position-static">
+                                                <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
+                                                <button class="product-action-btn"><i class="sli-basket-loaded"></i> Add to Cart</button>
+                                                <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="row" th:each="tempProduct: ${products}">
+                                    <div class="col mb-6">
+                                        <div class="product product-list">
+                                            <div class="product-thumb">
+                                                <a th:href="@{/product/details/{id}(id=${tempProduct.productid})}" class="product-image"><img loading="lazy" th:src="${tempProduct.image}" alt="Premium Roast Coffee" width="268" height="306"></a>
+
+                                            </div>
+                                            <div class="product-content">
+
+                                                <h5 class="product-title"><a th:href="@{/product/details/{id}(id=${tempProduct.productid})}"><td th:text="${tempProduct.name}"></td></a></h5>
+                                                <p class="product-excerpt"><td th:text="${tempProduct.description}"></td></p>
+                                                <div class="product-price"><td th:text="${tempProduct.price}"></td></div>
+                                                <div class="product-rating">
+                                                    <span class="product-rating-bg"><span class="product-rating-active" style="width: 80%;"></span></span>
+                                                </div>
+                                                <div class="product-action position-static">
+                                                    <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
+
+                                                    <!-- Form để thêm vào giỏ hàng -->
+                                                    <!--<form th:action="@{/cart/add/{productId}(productId=${tempProduct.productid})}" method="post">
+                                                        <input type="hidden" name="quantity" value="1">
+
+
+                                                        <select name="size" id="size" class="form-control mb-4 col-4">
+                                                            <option th:each="size : ${tempProduct.sizes}" th:value="${size.id}" th:text="${size.name}"></option>
+                                                        </select>
+
+                                                        <button type="submit" class="product-action-btn">
+                                                            <i class="sli-basket-loaded"></i> Add to Cart
+                                                        </button>
+                                                    </form>-->
+                                                    <form th:action="@{/cart/add/{productId}(productId=${tempProduct.productid})}" method="post" class="d-flex align-items-center gap-2">
+                                                        <!-- Input ẩn để gửi số lượng -->
+                                                        <input type="hidden" name="quantity" value="1">
+
+                                                        <!-- Dropdown chọn size -->
+                                                        <select name="size" id="size" class="product-action-btn" required>
+                                                            <option value="" disabled selected>Choose size</option>
+                                                            <option th:each="size : ${tempProduct.sizes}"
+                                                                    th:value="${size.id}"
+                                                                    th:text="${size.name}">
+                                                            </option>
+                                                        </select>
+
+                                                        <!-- Nút Submit -->
+                                                        <button type="submit" class="product-action-btn">
+                                                            <i class="sli-basket-loaded"></i> Add to Cart
+                                                        </button>
+                                                    </form>
+
+
+                                                    <!-- Nút so sánh -->
+                                                    <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Tab End -->
+                    <div class="shop-bottom-bar">
+                        <ul class="pagination">
+                            <!-- Nút Previous -->
+                            <li class="${currentPage == 0 ? 'disabled' : ''}">
+                                <a th:href="${currentPage > 0 ? '/products?page=' + (currentPage - 1) + '&sort=' + sort : '#'}">
+                                    <i class="sli-arrow-left"></i>
+                                </a>
+                            </li>
+
+                            <!-- Hiển thị các số trang -->
+                            <li th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+                                th:classappend="${page == currentPage} ? 'active'">
+                                <a th:href="@{/products(page=${page}, sort=${sort})}">[[${page + 1}]]</a>
+                            </li>
+
+                            <!-- Nút Next -->
+                            <li class="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                                <a th:href="${currentPage < totalPages - 1 ? '/products?page=' + (currentPage + 1) + '&sort=' + sort : '#'}">
+                                    <i class="sli-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-lg-3 col-12 mb-8">
+                    <div class="accordion" id="accordionSidebar">
+
+                        <!-- Sidebar Price Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button" data-bs-toggle="collapse" data-bs-target="#sidebarPrice">Price</button>
+                            <div id="sidebarPrice" class="accordion-collapse collapse show">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <input type="text" id="price-range" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Price End -->
+
+                        <!-- Sidebar Availability Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarAvailability">Availability</button>
+                            <div id="sidebarAvailability" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="stock" id="in-stock">
+                                        <label class="form-check-label" for="in-stock">In stock <span class="ms-auto">(23)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="stock" id="out-of-stock" checked>
+                                        <label class="form-check-label" for="out-of-stock">Out of stock <span class="ms-auto">(12)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Availability End -->
+
+                        <!-- Sidebar Product Type Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarProductType">Product Type</button>
+                            <div id="sidebarProductType" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-1">
+                                        <label class="form-check-label" for="type-1">Type 1 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-2">
+                                        <label class="form-check-label" for="type-2">Type 2 <span class="ms-auto">(3)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-3">
+                                        <label class="form-check-label" for="type-3">Type 3 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-4">
+                                        <label class="form-check-label" for="type-4">Type 4 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-5">
+                                        <label class="form-check-label" for="type-5">Type 5 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-6">
+                                        <label class="form-check-label" for="type-6">Type 6 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-7">
+                                        <label class="form-check-label" for="type-7">Type 7 <span class="ms-auto">(3)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-8">
+                                        <label class="form-check-label" for="type-8">Type 8 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="type" id="type-9">
+                                        <label class="form-check-label" for="type-9">Type 9 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Product Type End -->
+
+                        <!-- Sidebar Brand Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarBrand">Brand</button>
+                            <div id="sidebarBrand" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-1">
+                                        <label class="form-check-label" for="vendor-1">Vendor 1 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-2">
+                                        <label class="form-check-label" for="vendor-2">Vendor 2 <span class="ms-auto">(3)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-3">
+                                        <label class="form-check-label" for="vendor-3">Vendor 3 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-4">
+                                        <label class="form-check-label" for="vendor-4">Vendor 4 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-5">
+                                        <label class="form-check-label" for="vendor-5">Vendor 5 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-6">
+                                        <label class="form-check-label" for="vendor-6">Vendor 6 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-7">
+                                        <label class="form-check-label" for="vendor-7">Vendor 7 <span class="ms-auto">(3)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-8">
+                                        <label class="form-check-label" for="vendor-8">Vendor 8 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="vendor" id="vendor-9">
+                                        <label class="form-check-label" for="vendor-9">Vendor 9 <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Brand End -->
+
+                        <!-- Sidebar Color Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarColor">Color</button>
+                            <div id="sidebarColor" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="black">
+                                        <label class="form-check-label" for="black">Black <span class="ms-auto">(4)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="blue">
+                                        <label class="form-check-label" for="blue">Blue <span class="ms-auto">(7)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="gold">
+                                        <label class="form-check-label" for="gold">Gold <span class="ms-auto">(7)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="gray">
+                                        <label class="form-check-label" for="gray">Gray <span class="ms-auto">(7)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="green">
+                                        <label class="form-check-label" for="green">Green <span class="ms-auto">(7)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="magenta">
+                                        <label class="form-check-label" for="magenta">Magenta <span class="ms-auto">(5)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="maroon">
+                                        <label class="form-check-label" for="maroon">Maroon <span class="ms-auto">(5)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="navy">
+                                        <label class="form-check-label" for="navy">Navy <span class="ms-auto">(5)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="orange">
+                                        <label class="form-check-label" for="orange">Orange <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="pink">
+                                        <label class="form-check-label" for="pink">Pink <span class="ms-auto">(4)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="purple">
+                                        <label class="form-check-label" for="purple">Purple <span class="ms-auto">(4)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="red">
+                                        <label class="form-check-label" for="red">Red <span class="ms-auto">(7)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="violet">
+                                        <label class="form-check-label" for="violet">Violet <span class="ms-auto">(4)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="white">
+                                        <label class="form-check-label" for="white">White <span class="ms-auto">(6)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="color" id="yellow">
+                                        <label class="form-check-label" for="yellow">Yellow <span class="ms-auto">(4)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Color End -->
+
+                        <!-- Sidebar Material Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarMaterial">Material</button>
+                            <div id="sidebarMaterial" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="material" id="fiber">
+                                        <label class="form-check-label" for="fiber">Fiber <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="material" id="leather">
+                                        <label class="form-check-label" for="leather">Leather <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="material" id="metal">
+                                        <label class="form-check-label" for="metal">Metal <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="material" id="resin">
+                                        <label class="form-check-label" for="resin">Resin <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="material" id="slag">
+                                        <label class="form-check-label" for="slag">Slag <span class="ms-auto">(2)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Material End -->
+
+                        <!-- Sidebar Size Start -->
+                        <div class="accordion-item shop-sidebar-item">
+                            <button class="shop-sidebar-toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#sidebarSize">Size</button>
+                            <div id="sidebarSize" class="accordion-collapse collapse">
+                                <div class="shop-sidebar-body accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="size" id="s">
+                                        <label class="form-check-label" for="s">S <span class="ms-auto">(8)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="size" id="m">
+                                        <label class="form-check-label" for="m">M <span class="ms-auto">(11)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="size" id="l">
+                                        <label class="form-check-label" for="l">L <span class="ms-auto">(11)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="size" id="xl">
+                                        <label class="form-check-label" for="xl">XL <span class="ms-auto">(9)</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="size" id="xxl">
+                                        <label class="form-check-label" for="xxl">XXL <span class="ms-auto">(5)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Size End -->
+
+                    </div>
+                </div>
+
+
+            </div>
 
             <!-- Shop Top Bar Start -->
-            <div class="shop-top-bar">
-
-                <div class="shop-top-bar-item">
-                    <label for="SortBy">Sort by :</label>
-                    <select name="SortBy" id="SortBy" onchange="sortProducts()">
-                        <option value="manual">Featured</option>
-                        <option value="price-ascending">Price, low to high</option>
-                        <option value="price-descending">Price, high to low</option>
-                    </select>
-                </div>
-
-                <!--<form action="#" th:action="@{/product/search}" method="get">
-                    <input type="text" name="query" th:value="${searchQuery}" placeholder="Search products..." />
-                    <button type="submit">Search</button>
-                </form>-->
-
-                <form action="/product/search" method="get">
-                    <input type="text" name="query" placeholder="Search..." />
-                    <button type="submit">Search</button>
-                </form>
-
-                <div class="shop-top-bar-item">
-                    <p>Showing 1 - 12 of 25 result</p>
-                </div>
-
-                <div class="shop-top-bar-item">
-                    <label for="paginateBy">Show :</label>
-                    <select name="paginateBy" id="paginateBy">
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12" selected>12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                        <option value="32">32</option>
-                        <option value="33">33</option>
-                        <option value="34">34</option>
-                        <option value="35">35</option>
-                        <option value="36">36</option>
-                        <option value="37">37</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                        <option value="45">45</option>
-                        <option value="46">46</option>
-                        <option value="47">47</option>
-                        <option value="48">48</option>
-                        <option value="49">49</option>
-                        <option value="50">50</option>
-                    </select>
-                </div>
-
-                <div class="shop-top-bar-item">
-                    <div class="nav list-grid-toggle">
-                        <button data-bs-toggle="tab" data-bs-target="#product-grid"><i class="sli-grid"></i></button>
-                        <button class="active" data-bs-toggle="tab" data-bs-target="#product-list"><i class="sli-menu"></i></button>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Shop Top Bar End -->
-
-            <!-- Product Tab Start -->
-            <div class="tab-content" id="shopProductTabContent">
-                <div class="tab-pane fade" id="product-grid">
-                    <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 mb-n6">
-
-                        <!--<div class="col mb-6">
-                            <div class="product">
-                                <div class="product-thumb">
-                                    <a href="product-details.html" class="product-image"><img loading="lazy" src="../static/assets/images/products/product-1.png" alt="House Coffee Original" width="268" height="306"></a>
-
-
-                                    <div class="product-badge-left">
-                                        <span class="product-badge-new">new</span>
-                                    </div>
-
-                                    <div class="product-badge-right">
-                                        <span class="product-badge-sale">sale</span>
-                                        <span class="product-badge-sale">-15%</span>
-
-                                    </div>
-                                    <div class="product-action">
-                                        <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal"><i class="sli-magnifier"></i></button>
-                                        <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-                                        <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-                                        <button class="product-action-btn" data-tooltip-text="Add to cart"><i class="sli-bag"></i></button>
-                                    </div>
-
-                                    <div class="product-variation">
-                                        <div class="product-variation-type">
-                                            <button class="product-variation-type-btn" data-tooltip-text="White"><img loading="lazy" src="../static/assets/images/products/variation/type/type-1.jpg" alt="white" width="23" height="23"></button>
-                                            <button class="product-variation-type-btn" data-tooltip-text="Gold"><img loading="lazy" src="../static/assets/images/products/variation/type/type-2.jpg" alt="gold" width="23" height="23"></button>
-                                            <button class="product-variation-type-btn" data-tooltip-text="Black"><img loading="lazy" src="../static/assets/images/products/variation/type/type-3.jpg" alt="black" width="23" height="23"></button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="product-content">
-
-                                    <h5 class="product-title"><a href="product-details.html">House Coffee Original</a></h5>
-                                    <div class="product-price"><del>$130.00</del>$110.00</div>
-                                    <div class="product-rating">
-                                        <span class="product-rating-bg"><span class="product-rating-active" style="width: 90%;"></span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="row" th:each="tempProduct: ${products}">
-                            <div class="col mb-6">
-                                <div class="product">
-                                    <div class="product-thumb">
-
-                                        <a th:href="@{/product/details/{id}(id=${tempProduct.productid})}" class="product-image">
-                                            <img loading="lazy" th:src="${tempProduct.image}" alt="Premium Roast Coffee" width="268" height="306">
-                                        </a>
-
-                                        <div class="product-action">
-
-                                            <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal">
-                                                <i class="sli-magnifier"></i>
-                                            </button>
-
-                                            <!--<form th:href="@{/product/details/{id}(id=${tempProduct.productid})}" >
-                                                <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal">
-                                                    <i class="sli-magnifier"></i>
-                                                </button>
-                                            </form>-->
-
-                                            <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-                                            <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-
-                                            <!--<button class="product-action-btn" data-tooltip-text="Add to cart">
-                                                <i class="sli-bag"></i>
-                                            </button>-->
-                                            <form th:action="@{/cart/add/{productId}(productId=${tempProduct.productid})}" method="post">
-                                                <input type="hidden" name="quantity" value="1">
-                                                <button type="submit" class="product-action-btn" data-tooltip-text="Add to cart">
-                                                    <i class="sli-basket-loaded"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="product-content">
-
-                                        <h5 class="product-title"><a th:href="@{/product/details/{id}(id=${tempProduct.productid})}"><td th:text="${tempProduct.name}"></td></a></h5>
-                                        <div class="product-price"><td th:text="${tempProduct.price}"></td></div>
-                                        <div class="product-rating">
-                                            <span class="product-rating-bg"><span class="product-rating-active" style="width: 80%;"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade show active" id="product-list">
-                    <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 gy-4">
-
-                        <!--<div class="col mb-6">
-                            <div class="product product-list">
-                                <div class="product-thumb">
-                                    <a href="product-details.html" class="product-image"><img loading="lazy" src="../static/assets/images/products/product-1.png" alt="House Coffee Original" width="268" height="306"></a>
-
-
-                                    <div class="product-badge-left">
-                                        <span class="product-badge-new">new</span>
-                                    </div>
-
-                                    <div class="product-badge-right">
-                                        <span class="product-badge-sale">sale</span>
-                                        <span class="product-badge-sale">-15%</span>
-
-                                    </div>
-                                    <div class="product-action">
-                                        <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal"><i class="sli-magnifier"></i></button>
-                                    </div>
-
-                                    <div class="product-variation">
-                                        <div class="product-variation-type">
-                                            <button class="product-variation-type-btn" data-tooltip-text="White"><img loading="lazy" src="../static/assets/images/products/variation/type/type-1.jpg" alt="white" width="23" height="23"></button>
-                                            <button class="product-variation-type-btn" data-tooltip-text="Gold"><img loading="lazy" src="../static/assets/images/products/variation/type/type-2.jpg" alt="gold" width="23" height="23"></button>
-                                            <button class="product-variation-type-btn" data-tooltip-text="Black"><img loading="lazy" src="../static/assets/images/products/variation/type/type-3.jpg" alt="black" width="23" height="23"></button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="product-content">
-
-                                    <h5 class="product-title"><a href="product-details.html">House Coffee Original</a></h5>
-                                    <p class="product-excerpt">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,</p>
-                                    <div class="product-price"><del>$130.00</del>$110.00</div>
-                                    <div class="product-rating">
-                                        <span class="product-rating-bg"><span class="product-rating-active" style="width: 90%;"></span></span>
-                                    </div>
-                                    <div class="product-action position-static">
-                                        <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-                                        <button class="product-action-btn"><i class="sli-basket-loaded"></i> Add to Cart</button>
-                                        <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="row" th:each="tempProduct: ${products}">
-                            <div class="col mb-6">
-                                <div class="product product-list">
-                                    <div class="product-thumb">
-                                        <a th:href="@{/product/details/{id}(id=${tempProduct.productid})}" class="product-image"><img loading="lazy" th:src="${tempProduct.image}" alt="Premium Roast Coffee" width="268" height="306"></a>
-
-                                        <!--<div class="product-action">
-                                            <button class="product-action-btn" data-tooltip-text="Quick View" data-bs-toggle="modal" data-bs-target="#exampleProductModal"><i class="sli-magnifier"></i></button>
-                                        </div>-->
-                                    </div>
-                                    <div class="product-content">
-
-                                        <h5 class="product-title"><a th:href="@{/product/details/{id}(id=${tempProduct.productid})}"><td th:text="${tempProduct.name}"></td></a></h5>
-                                        <p class="product-excerpt"><td th:text="${tempProduct.description}"></td></p>
-                                        <div class="product-price"><td th:text="${tempProduct.price}"></td></div>
-                                        <div class="product-rating">
-                                            <span class="product-rating-bg"><span class="product-rating-active" style="width: 80%;"></span></span>
-                                        </div>
-                                        <!--<div class="product-action position-static">
-                                            <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-                                            <button class="product-action-btn"><i class="sli-basket-loaded"></i> Add to Cart</button>
-                                            <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-                                        </div>-->
-                                        <div class="product-action position-static">
-                                            <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-
-                                            <!-- Form để thêm vào giỏ hàng -->
-                                            <form th:action="@{/cart/add/{productId}(productId=${tempProduct.productid})}" method="post">
-                                                <input type="hidden" name="quantity" value="1">
-                                                <button type="submit" class="product-action-btn">
-                                                    <i class="sli-basket-loaded"></i> Add to Cart
-                                                </button>
-                                            </form>
-
-                                            <!-- Nút so sánh -->
-                                            <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-                                        </div>
-
-                                        <!--<div class="product-action position-static">
-                                            <button class="product-action-btn" data-tooltip-text="Add to wishlist"><i class="sli-heart"></i></button>
-                                            <button class="product-action-btn"><i class="sli-basket-loaded"></i> Add to Cart</button>
-                                            <button class="product-action-btn" data-tooltip-text="Compare"><i class="sli-refresh"></i></button>
-                                        </div>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Product Tab End -->
-
-
-
-
-            <!-- Shop Bottom Bar Start -->
-            <!--<div class="shop-bottom-bar">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#prev"><i class="sli-arrow-left"></i></a></li>
-                    <li><a class="active" href="#page=1">1</a></li>
-                    <li><a href="#page=2">2</a></li>
-                    <li><a href="#page=3">3</a></li>
-                    <li><a href="#next"><i class="sli-arrow-right"></i></a></li>
-                </ul>
-            </div>-->
-            <!-- Shop Bottom Bar End -->
-
-            <div class="shop-bottom-bar">
-                <ul class="pagination">
-                    <!-- Nút Previous -->
-                    <li class="${currentPage == 0 ? 'disabled' : ''}">
-                        <a th:href="${currentPage > 0 ? '/products?page=' + (currentPage - 1) + '&sort=' + sort : '#'}">
-                            <i class="sli-arrow-left"></i>
-                        </a>
-                    </li>
-
-                    <!-- Hiển thị các số trang -->
-                    <li th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
-                        th:classappend="${page == currentPage} ? 'active'">
-                        <a th:href="@{/products(page=${page}, sort=${sort})}">[[${page + 1}]]</a>
-                    </li>
-
-                    <!-- Nút Next -->
-                    <li class="${currentPage == totalPages - 1 ? 'disabled' : ''}">
-                        <a th:href="${currentPage < totalPages - 1 ? '/products?page=' + (currentPage + 1) + '&sort=' + sort : '#'}">
-                            <i class="sli-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
-            <!--<div class="shop-bottom-bar">
-                <ul class="pagination">
-                    <li class="${currentPage == 0 ? 'disabled' : ''}">
-                        <a th:href="@{/products(page=${currentPage - 1}, sort=${sort})}"
-                           th:if="${currentPage > 0}">
-                            <i class="sli-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li th:each="page : ${#numbers.sequence(0, totalPages - 1)}">
-                        <a th:href="@{/products(page=${page}, sort=${sort})}"
-                           th:class="${page == currentPage ? 'active' : ''}">
-                            <span th:text="${page + 1}"></span>
-                        </a>
-                    </li>
-                    <li class="${currentPage >= totalPages - 1 ? 'disabled' : ''}">
-                        <a th:href="@{/products(page=${currentPage + 1}, sort=${sort})}"
-                           th:if="${currentPage < totalPages - 1}">
-                            <i class="sli-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>-->
 
 
 

@@ -121,6 +121,7 @@ public class CheckoutController {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setProduct(item.getProduct());
             orderDetail.setQuantity(item.getQuantity());
+            orderDetail.setSize(item.getSize());
             order.setProduct(item.getProduct());
             orderDetail.setOrder(order);
 
@@ -142,4 +143,74 @@ public class CheckoutController {
     }
 
 
+
+    /*@RequestMapping("/update-status/{orderId}")
+    public String updateOrderStatus(@PathVariable Long orderId, Model model) {
+        // Lấy đơn hàng từ cơ sở dữ liệu
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Kiểm tra và thay đổi trạng thái
+        if ("Pending".equals(order.getStatus())) {
+            order.setStatus("Confirm Order");
+        } else if ("Confirm Order".equals(order.getStatus())) {
+            order.setStatus("Pending");
+        }
+
+        // Lưu lại thay đổi vào cơ sở dữ liệu
+        orderRepository.save(order);
+
+        // Chuyển hướng lại trang danh sách đơn hàng sau khi cập nhật
+        return "redirect:/order/list";  // Trang danh sách đơn hàng của quản trị viên
+    }*/
+
+    @RequestMapping("/update-status/{orderId}")
+    public String updateOrderStatus(@PathVariable Long orderId, Model model) {
+        // Lấy đơn hàng từ cơ sở dữ liệu
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Kiểm tra và thay đổi trạng thái
+        switch (order.getStatus()) {
+            case "Pending":
+                order.setStatus("Confirm Order");
+                break;
+            case "Confirm Order":
+                order.setStatus("Preparing");  // Thêm trạng thái "Preparing"
+                break;
+            case "Preparing":
+                order.setStatus("Shipping");  // Chuyển từ "Preparing" sang "Shipping"
+                break;
+            case "Shipping":
+                order.setStatus("Canceling");
+                break;
+            case "Canceling":
+                order.setStatus("Pending");
+                break;
+            default:
+                throw new IllegalStateException("Unknown status: " + order.getStatus());
+        }
+
+        // Lưu lại thay đổi vào cơ sở dữ liệu
+        orderRepository.save(order);
+
+        // Chuyển hướng lại trang danh sách đơn hàng sau khi cập nhật
+        return "redirect:/order/list";
+    }
+
+    @PostMapping("/update-status/{orderId}")
+    public String updateOrderStatus(@PathVariable Long orderId, @RequestParam("status") String status) {
+        // Lấy đơn hàng từ cơ sở dữ liệu
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Cập nhật trạng thái mới
+        order.setStatus(status);
+
+        // Lưu lại thay đổi vào cơ sở dữ liệu
+        orderRepository.save(order);
+
+        // Chuyển hướng lại trang danh sách đơn hàng
+        return "redirect:/order/list";
+    }
 }

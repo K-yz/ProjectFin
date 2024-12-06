@@ -25,6 +25,10 @@ public class OrderDetail {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToOne
+    @JoinColumn(name = "size_id")
+    private Size size;
+
     // Getters and Setters
     public Long getOrderDetailId() {
         return orderDetailId;
@@ -64,5 +68,13 @@ public class OrderDetail {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 }

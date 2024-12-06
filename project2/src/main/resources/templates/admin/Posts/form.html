@@ -2,19 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="~{/admin/shared/header :: header}"/>
+    <style>
+        .form-title {
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .form-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-save {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-save:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <!-- Sidebar -->
+<!--<div class="wrapper">
+    &lt;!&ndash; Sidebar &ndash;&gt;
     <div th:replace="~{/admin/shared/header :: sidebar}"/>
-    <!-- End Sidebar -->
+    &lt;!&ndash; End Sidebar &ndash;&gt;
 
     <div class="main-panel">
-        <!-- Navbar Header -->
+        &lt;!&ndash; Navbar Header &ndash;&gt;
         <div th:replace="~{/admin/shared/header :: navbar-header}"/>
 
-        <!-- End Navbar -->
+        &lt;!&ndash; End Navbar &ndash;&gt;
         <div class="container">
             <h3>Category Directory</h3>
             <hr>
@@ -39,9 +68,55 @@
             <hr>
         </div>
 
-        <!-- Footer -->
+        &lt;!&ndash; Footer &ndash;&gt;
         <div th:replace="~{/admin/shared/footer :: footer}"/>
 
+    </div>
+</div>-->
+
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"/>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"/>
+        <!-- End Navbar -->
+
+        <div class="container mt-4">
+            <h3 class="text-primary">Product Directory</h3>
+            <hr>
+
+            <div class="form-title text-center">
+                <h3>Category Directory</h3>
+            </div>
+
+            <div class="form-container mx-auto col-md-8">
+
+                <form action="#" th:action="@{/post/save}" th:object="${post}" method="POST" enctype="multipart/form-data">
+
+                    <input type="hidden" th:field="*{postsid}"/>
+
+                    <input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Name">
+
+                    <input type="date" th:field="*{postDate}" class="form-control mb-4 col-4" placeholder="Date">
+
+                    <input type="file" name="imageFile" class="form-control mb-4 col-4">
+
+                    <input type="text" th:field="*{description}" class="form-control mb-4 col-4" placeholder="Description">
+
+                    <button type="submit" class="btn btn-info col-2">Save</button>
+                </form>
+                <div class="mt-3 text-center">
+                    <a href="/posts/list" class="back-link">Back to Post List</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{/admin/shared/footer :: footer}"/>
     </div>
 </div>
 

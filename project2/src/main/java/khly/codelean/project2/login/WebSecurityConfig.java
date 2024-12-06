@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 						authorizeRequests
 
 								.requestMatchers("/admin").hasRole("ADMIN")
-								.requestMatchers("/category/**", "/product/list","/product/from", "/faq/**", "/blog/**", "/customer/**", "/feedback/**", "/order/**", "/orderdetail/**", "/post/**" ).hasRole("ADMIN")
+								.requestMatchers("/category/**", "/product/list","/product/from", "/faq/**", "/blog/**", "/customer/**", "/feedback/**", "/order/list", "/orderdetail/**", "/post/**" ).hasRole("ADMIN")
 								.requestMatchers("/checkout/**").authenticated()
 								/*.requestMatchers("/cart/**").hasRole("USER")*/
 								.requestMatchers("/add-to-cart", "/cart/**", "/product/**").permitAll()

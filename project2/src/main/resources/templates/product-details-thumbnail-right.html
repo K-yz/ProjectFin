@@ -24,24 +24,35 @@
     <!-- Product Details Section Start -->
     <div class="product-details-section section section-padding">
         <div class="container">
-            <!-- Single Product Top Area Start -->
             <div class="row row-cols-lg-2 row-cols-1 mb-n6">
-                <div class="col mb-6">
-                    <div class="single-product-image flex-row gap-4">
-                        <!-- Product Image Slider Start -->
+                <!--<div class="col mb-6">
+                    <div class="single-product-image">
+                        &lt;!&ndash; Product Image Slider Start &ndash;&gt;
                         <div class="product-image-slider-vertical swiper align-self-start">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide image-zoom">
-                                    <img th:src="${product.image}" alt="Signature Blend Roast Coffee">
+                                    <img th:src="${product.image}" alt="Signature Blend Roast Coffee" >
                                 </div>
                             </div>
                             <div class="swiper-pagination d-none"></div>
                             <div class="swiper-button-prev d-none"></div>
                             <div class="swiper-button-next d-none"></div>
                         </div>
-                        <!-- Product Image Slider End -->
+                        &lt;!&ndash; Product Image Slider End &ndash;&gt;
                     </div>
+                </div>-->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img th:src="${product.image}" alt="Slide 1">
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
 
                 <!-- Product Content Start -->
                 <div class="col mb-6" >
@@ -56,12 +67,12 @@
                             <li><span class="label">SKU :</span> <span class="value">1110</span></li>
                             <li><span class="label">Vendor :</span> <span class="value">Vendor 3</span></li>
                             <li><span class="label">Type :</span> <span class="value">Type 3</span></li>
-                            <li><span class="label">Availability :</span> <span class="value">11 Left in Stock</span></li>
+                            <li><span class="label">Availability :</span> <span class="value">100 Left in Stock</span></li>
                         </ul>
                         <div class="single-product-text">
                             <td th:text="${product.description}"></td>
                         </div>
-                        <ul class="single-product-variations">
+                        <!--<ul class="single-product-variations">
                             <li><span class="label">Size :</span>
                                 <div class="value">
                                     <div class="single-product-variation-size-wrap">
@@ -72,65 +83,75 @@
                                     </div>
                                 </div>
                             </li>
-                        </ul>
+                        </ul>-->
+
+                        <div class="single-product-variations">
+                            <li>
+                                <span class="label">Size :</span>
+                                <div class="value">
+                                    <div class="single-product-variation-size-wrap">
+                                        <div th:each="size : ${sizes}" class="single-product-variation-size-item">
+                                            <input type="radio" name="size" th:id="'size-' + ${size.id}" th:value="${size.id}">
+                                            <label th:for="'size-' + ${size.id}" th:text="${size.name}"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+
+
                         <div class="single-product-actions">
                             <!--<div class="single-product-actions-item">
-                                <div class="product-quantity-count">
-                                    <button class="dec qty-btn">-</button>
-                                    <input class="product-quantity-box" type="text" name="quantity" value="1">
-                                    <button class="inc qty-btn">+</button>
-                                </div>
-                            </div>-->
-
-                            <div class="single-product-actions-item">
-                                <!-- Phần tăng/giảm số lượng -->
+                                &lt;!&ndash; Phần tăng/giảm số lượng &ndash;&gt;
                                 <div class="product-quantity-count">
                                     <button type="button" class="dec qty-btn">-</button>
                                     <input class="product-quantity-box" type="text" id="quantityInput" name="displayQuantity" value="1" readonly>
                                     <button type="button" class="inc qty-btn">+</button>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="single-product-actions-item">
                                 <form th:action="@{/cart/add/{productId}(productId=${product.productid})}" method="post">
+                                    <input type="hidden" name="quantity" value="1">
+
+                                    <select name="size" id="size" class="form-control mb-4 col-4">
+                                        <option th:each="size : ${product.sizes}" th:value="${size.id}" th:text="${size.name}"></option>
+                                    </select>
+
                                     <button type="submit" class="btn btn-dark btn-primary-hover rounded-0">ADD TO CART</button>
+
                                 </form>
                             </div>
 
                             <div class="single-product-actions-item"><button class="btn btn-icon btn-light btn-primary-hover rounded-0"><i class="sli-heart"></i></button></div>
                             <div class="single-product-actions-item"><button class="btn btn-icon btn-light btn-primary-hover rounded-0"><i class="sli-refresh"></i></button></div>
                         </div>
-                        <!--<div class="single-product-buy-now">
-                            <a href="#" class="btn btn-dark btn-primary-hover rounded-0">Buy it Now</a>
-                        </div>-->
                         <ul class="single-product-meta">
                             <li><span class="label">Categories :</span> <span class="value links">
-                                <a href="#">Coffee</a>
+                                <!--<a href="#">Coffee</a>
                                 <a href="#">Deal Collection</a>
                                 <a href="#">Featured Products</a>
                                 <a href="#">Green coffee</a>
-                                <a href="#">Italian</a>
+                                <a href="#">Italian</a>-->
+                                <a th:text="${product.category.name}"></a>
+
+
                             </span></li>
-                            <!--<li><span class="label">Tags :</span> <span class="value links">
+                            <li><span class="label">Tags :</span> <span class="value links">
                                 <a href="#">black</a>
                                 <a href="#">fiber</a>
                                 <a href="#">leather</a>
-                            </span></li>-->
-                            <!--<li><span class="label">Share :</span> <span class="value social">
+                            </span></li>
+                           <!-- <li><span class="label">Share :</span> <span class="value social">
                                 <a href="#"><img src="../static/assets/images/icons/social/facebook.png" alt="facebook"></a>
                                 <a href="#"><img src="../static/assets/images/icons/social/twitter.png" alt="twitter"></a>
                                 <a href="#"><img src="../static/assets/images/icons/social/pinterest.png" alt="pinterest"></a>
                             </span></li>-->
                         </ul>
-                        <!--<div class="single-product-safe-payment">
-                            <p>Guaranteed safe checkout</p>
-                            <img src="../static/assets/images/footer/footer-payment.png" alt="payment">
-                        </div>-->
                     </div>
                 </div>
                 <!-- Product Content End -->
             </div>
-
 
             <!-- Single Product Top Area End -->
 
@@ -378,18 +399,12 @@
                 </div>
             </div>
             <!-- Single Product Bottom (Description) Area End -->
-
         </div>
     </div>
     <!-- Product Details Section End -->
 
-
-
-
-
-
     <!-- Another product -->
-    <div class="h1-product-section section section-padding pt-0">
+    <!--<div class="h1-product-section section section-padding pt-0">
         <div class="container">
             <div class="section-title section-title-center">
                 <p class="title">POPULAR ITEM</p>
@@ -592,11 +607,11 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
     <!-- Product Section End -->
 
     <!-- Product Section Start -->
-    <div class="h1-product-section section section-padding pt-0">
+    <!--<div class="h1-product-section section section-padding pt-0">
         <div class="container">
             <div class="section-title section-title-center">
                 <p class="title">POPULAR ITEM</p>
@@ -799,11 +814,8 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
     <!-- Product Section End -->
-
-
-
 
     <!-- Footer Section Start -->
 <div th:replace="~{/shared/footer :: footerOt}"/>

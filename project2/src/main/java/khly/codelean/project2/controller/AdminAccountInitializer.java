@@ -1,18 +1,18 @@
 package khly.codelean.project2.controller;
 
-import khly.codelean.project2.dao.PaymentMethodRepository;
-import khly.codelean.project2.dao.RoleRepository;
-import khly.codelean.project2.dao.ShippingMethodRepository;
-import khly.codelean.project2.dao.UserRepository;
+import khly.codelean.project2.dao.*;
 import khly.codelean.project2.entity.PaymentMethod;
 import khly.codelean.project2.entity.Role;
 import khly.codelean.project2.entity.ShippingMethod;
+
+import khly.codelean.project2.entity.Size;
 import khly.codelean.project2.login.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -34,6 +34,9 @@ public class AdminAccountInitializer implements CommandLineRunner {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SizeRepository sizeRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -64,18 +67,34 @@ public class AdminAccountInitializer implements CommandLineRunner {
         }
 
         if (paymentMethodRepository.count() == 0) {
-            paymentMethodRepository.save(new PaymentMethod("Credit Card"));
-            paymentMethodRepository.save(new PaymentMethod("PayPal"));
-            paymentMethodRepository.save(new PaymentMethod("Bank Transfer"));
+            paymentMethodRepository.save(new PaymentMethod("Cash on Delivery"));
+            /*paymentMethodRepository.save(new PaymentMethod("PayPal"));
+            paymentMethodRepository.save(new PaymentMethod("Bank Transfer"));*/
             System.out.println("Payment methods initialized.");
         }
 
         if (shippingMethodRepository.count() == 0) {
-            shippingMethodRepository.save(new ShippingMethod("Standard Shipping"));
-            shippingMethodRepository.save(new ShippingMethod("Express Shipping"));
-            shippingMethodRepository.save(new ShippingMethod("Next Day Shipping"));
+            shippingMethodRepository.save(new ShippingMethod("Order & Pick-Up"));
+            shippingMethodRepository.save(new ShippingMethod("Delivers"));
+            /*shippingMethodRepository.save(new ShippingMethod("Next Day Shipping"));*/
             System.out.println("Shipping methods initialized.");
         }
+
+        /*if (sizeRepository.count() == 0) {
+            sizeRepository.save(new Size("s"));
+            sizeRepository.save(new Size("m"));
+            sizeRepository.save(new Size("l"));
+            sizeRepository.save(new Size("xl"));
+            System.out.println("Size initialized.");
+        }*/
+
+        /*if (sizeRepository.count() == 0) {
+            sizeRepository.save(new Size("s", BigDecimal.valueOf(0)));
+            sizeRepository.save(new Size("m", BigDecimal.valueOf(5000)));
+            sizeRepository.save(new Size("l", BigDecimal.valueOf(10000)));
+            sizeRepository.save(new Size("xl", BigDecimal.valueOf(15000)));
+            System.out.println("Sizes initialized with additional prices.");
+        }*/
     }
 
 }

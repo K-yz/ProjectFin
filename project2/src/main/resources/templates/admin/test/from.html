@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Order Details</title>
+    <title>Chi
+        tiết đơn hàng</title>
+    <div th:replace="~{/admin/shared/header :: header}"></div>
+    <link rel="stylesheet" href="styles.css"> <!-- Đường dẫn đến CSS -->
 </head>
 <body>
-<h1>Chi tiết đơn hàng</h1>
-<p><strong>ID đơn hàng:</strong> <span th:text="${order.orderid}"></span></p>
-<p><strong>Khách hàng:</strong> <span th:text="${order.customer.name}"></span></p>
-<p><strong>Ngày đặt hàng:</strong> <span th:text="${order.orderDate}"></span></p>
-<p><strong>Tổng tiền:</strong> <span th:text="${order.price}"></span></p>
-<p><strong>Trạng thái:</strong> <span th:text="${order.status}"></span></p>
-<p><strong>Payment:</strong> <span th:text="${order.paymentMethod.methodName}"></span></p>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/admin/shared/header :: sidebar}"></div>
+    <!-- End Sidebar -->
 
-<h2>Sản phẩm trong đơn hàng</h2>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Sản phẩm</th>
-        <th>Số lượng</th>
-        <th>Giá</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="detail : ${order.orderDetails}">
-        <td th:text="${detail.product.name}"></td>
-        <td th:text="${detail.quantity}"></td>
-        <td th:text="${detail.product.price * detail.quantity}"></td>
-    </tr>
-    </tbody>
-</table>
+    <div class="main-panel">
+        <!-- Navbar Header -->
+        <div th:replace="~{/admin/shared/header :: navbar-header}"></div>
+        <div class="container">
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header custom-bg">
+                    <h1 class="page-title m-0">Order Detail</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>ID Order:</strong> <span th:text="${order.orderid}"></span></p>
+                            <p><strong>Customer:</strong> <span th:text="${order.customer.name}"></span></p>
+                            <p><strong>Date Time:</strong> <span th:text="${order.orderDate}"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Total:</strong> <span th:text="${order.price}"></span></p>
+                            <p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
+                            <p><strong>Payment Method:</strong> <span th:text="${order.paymentMethod.methodName}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header custom-bg">
+                    <h2 class="page-title m-0">Product In Order</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Product</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="detail : ${order.orderDetails}">
+                            <td th:text="${detail.product.name}"></td>
+                            <td th:text="${detail.size.name}"></td>
+                            <td th:text="${detail.quantity}"></td>
+                            <td th:text="${(detail.product.price + (detail.size != null ? detail.size.additionalPrice : 0)) * detail.quantity}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div th:replace="~{/admin/shared/footer :: footer}"></div>
+        </div>
+    </div> <!-- Đóng thẻ main-panel -->
+</div> <!-- Đóng thẻ wrapper -->
+<div th:replace="~{/admin/shared/header :: script}"></div>
 </body>
 </html>

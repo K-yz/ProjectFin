@@ -28,8 +28,15 @@ public class OrderController {
     }
 
     @GetMapping("/list")
-    public String listOrder(Model model) {
-        model.addAttribute("orders", orderRepository.findAll());
+    public String listOrder(@RequestParam(value = "status", required = false) String status, Model model) {
+        if (status != null && !status.isEmpty()) {
+            // Lọc đơn hàng theo trạng thái
+            model.addAttribute("orders", orderRepository.findByStatus(status));
+        } else {
+            // Hiển thị tất cả đơn hàng
+            model.addAttribute("orders", orderRepository.findAll());
+        }
+        model.addAttribute("currentStatus", status); // Để giữ trạng thái đã chọn trên giao diện
         return "admin/Order/list";
     }
 
@@ -39,7 +46,16 @@ public class OrderController {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
         model.addAttribute("order", order);
-        return "admin/test/from"; // Trả về tên template cho trang chi tiết đơn hàng
+        return "admin/test/from";
+    }
+
+
+    @GetMapping("/detail/{id}")
+    public String getOrderDetail(@PathVariable("id") Long orderId, Model model) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+        model.addAttribute("order", order);
+        return "user-cart";
     }
 
 }

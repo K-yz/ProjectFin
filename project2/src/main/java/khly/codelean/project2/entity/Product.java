@@ -40,6 +40,17 @@ public class Product {
     @JoinColumn(name = "categoryid", nullable = false)
     private Category category;
 
+    @ManyToMany
+    @JoinTable(
+            name = "product_size",
+            joinColumns = @JoinColumn(name = "productid"),
+            inverseJoinColumns = @JoinColumn(name = "sizeid")
+    )
+    private List<Size> sizes;
+
+
+
+
     public Long getProductid() {
         return productid;
     }
@@ -102,5 +113,13 @@ public class Product {
 
     public void setOrder(List<Order> order) {
         this.order = order;
+    }
+
+    public List<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(List<Size> sizes) {
+        this.sizes = sizes;
     }
 }

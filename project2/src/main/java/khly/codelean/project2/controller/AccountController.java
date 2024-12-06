@@ -1,7 +1,11 @@
 package khly.codelean.project2.controller;
 
+import khly.codelean.project2.dao.OrderRepository;
+import khly.codelean.project2.entity.Customer;
+import khly.codelean.project2.entity.Order;
 import khly.codelean.project2.entity.UserDTO;
 import khly.codelean.project2.login.User;
+import khly.codelean.project2.service.OrderService;
 import khly.codelean.project2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,19 +18,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
     public class AccountController {
+    private final OrderRepository orderRepository;
+    private final OrderService orderService;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-        @Autowired
-        private UserService userService;
+    @Autowired
+    public AccountController(OrderRepository orderRepository, OrderService orderService, UserService userService, PasswordEncoder passwordEncoder) {
+        this.orderService = orderService;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.orderRepository = orderRepository;
+    }
 
-        @Autowired
-        private PasswordEncoder passwordEncoder;
         @GetMapping("/my-account")
         public String showAccountPage(Model model) {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String email = auth.getName(); // Lấy email từ thông tin xác thực hiện tại
             User currentUser = userService.findByEmail(email);
+            model.addAttribute("orders", orderRepository.findAll());
 
             if (currentUser != null) {
                 UserDTO userDTO = new UserDTO();
@@ -75,10 +89,10 @@ import org.springframework.web.bind.annotation.RequestParam;
                     return "redirect:/my-account"; // Redirect về trang thông tin tài khoản
                 }
 
-                // Cập nhật mật khẩu mới (mã hóa trước khi lưu)
+
                 currentUser.setPassword(passwordEncoder.encode(newPassword));
             }
-// Lưu cập nhật thông tin người dùng
+
             try {
                 userService.save(currentUser);
                 model.addAttribute("success", "Thông tin tài khoản và mật khẩu đã được cập nhật thành công.");
@@ -89,6 +103,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
             return "redirect:/my-account"; // Redirect về trang thông tin tài khoản
         }
+
+    @GetMapping("/account/orders")
+    public String viewOrders(Model model) {
+        // Lấy thông tin người dùng hiện tại
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Customer currentUser = (Customer) authentication.getPrincipal();
+
+        // Lấy danh sách đơn hàng của người dùng
+        List<Order> orders = orderService.getOrdersByCustomer(currentUser);
+        model.addAttribute("orders", orders);
+
+        return "account/orders"; // Đảm bảo tên template này là chính xác
+    }
 
     }
 

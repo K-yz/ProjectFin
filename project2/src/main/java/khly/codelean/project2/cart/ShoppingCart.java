@@ -11,7 +11,8 @@ public class ShoppingCart {
 
     public void addItem(CartItem item) {
         for (CartItem existingItem : items) {
-            if (existingItem.getProduct().getProductid().equals(item.getProduct().getProductid())) {
+            if (existingItem.getProduct().getProductid().equals(item.getProduct().getProductid()) &&
+                    existingItem.getSize().getId().equals(item.getSize().getId())) {
                 existingItem.setQuantity(existingItem.getQuantity() + item.getQuantity());
                 return;
             }
@@ -19,27 +20,36 @@ public class ShoppingCart {
         items.add(item);
     }
 
-    public void removeItem(Long productId) {
-        items.removeIf(item -> item.getProduct().getProductid().equals(productId));
+
+    public void removeItem(Long productId, Long sizeId) {
+        items.removeIf(item -> item.getProduct().getProductid().equals(productId) && item.getSize().getId().equals(sizeId));
     }
+
 
     public List<CartItem> getItems() {
         return items;
     }
 
+
     public BigDecimal getTotal() {
         return items.stream()
-                .map(item -> item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                .map(item -> item.getProduct().getPrice()
+                        .add(item.getSize().getAdditionalPrice() != null
+                                ? item.getSize().getAdditionalPrice()
+                                : BigDecimal.ZERO) // Đảm bảo `additionalPrice` không bị null
+                        .multiply(BigDecimal.valueOf(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public void updateQuantity(Long productId, int quantity) {
+
+
+    public void updateQuantity(Long productId, Long sizeId, int quantity) {
         for (CartItem item : items) {
-            if (item.getProduct().getProductid().equals(productId)) {
+            if (item.getProduct().getProductid().equals(productId) && item.getSize().getId().equals(sizeId)) {
                 if (quantity > 0) {
                     item.setQuantity(quantity);
                 } else {
-                    removeItem(productId); // Nếu số lượng bằng 0, xóa sản phẩm khỏi giỏ
+                    removeItem(productId, sizeId);
                 }
                 break;
             }
@@ -47,10 +57,14 @@ public class ShoppingCart {
     }
 
 
+
     public void clear() {
         items.clear();
     }
 
+    public int getTotalItems() {
+        return items.stream().mapToInt(CartItem::getQuantity).sum();
+    }
 
 
 }

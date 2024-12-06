@@ -108,13 +108,13 @@ public class UserController {
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
         String fromAddress = "your-email@example.com";
-        String senderName = "Your Company";
+        String senderName = "Project SEM4";
         String subject = "Please verify your registration";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Your company name.";
+                + "Project SEM4";
 
 
         MimeMessage message = mailSender.createMimeMessage();

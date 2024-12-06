@@ -213,6 +213,32 @@
 
     <!-- Activation JS -->
     <script src="/assets/js/active.js"></script>
+
+    <!-- JavaScript để cập nhật thông tin giỏ hàng -->
+    <!--<script type="text/javascript">
+        // Hàm lấy thông tin giỏ hàng và cập nhật vào UI
+        function updateCartSummary() {
+            $.ajax({
+                url: '/cart/summary',  // Gọi endpoint để lấy thông tin giỏ hàng
+                method: 'GET',
+                success: function(response) {
+                    // Cập nhật số lượng sản phẩm và tổng giá trị
+                    $('#cart-item-count').text(response.totalItems);
+                    $('#cart-total-price').text('$' + response.totalPrice.toFixed(2));
+                },
+                error: function() {
+                    console.error('Không thể tải thông tin giỏ hàng');
+                }
+            });
+        }
+
+        // Gọi hàm updateCartSummary khi trang được tải
+        $(document).ready(function() {
+            updateCartSummary();
+        });
+
+        // Nếu có thêm sản phẩm vào giỏ, bạn có thể gọi lại updateCartSummary() để làm mới thông tin giỏ hàng.
+    </script>-->
 </div>
 </body>
 </html>

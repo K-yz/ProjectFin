@@ -59,33 +59,29 @@
                                     <thead>
                                     <tr>
                                         <th>Order</th>
+                                        <th>Name</th>
                                         <th>Date</th>
                                         <th>Status</th>
-                                        <th>Total</th>
+                                        <th>Price</th>
+                                        <th>Shipping</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
+
+
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Aug 22, 2023</td>
-                                        <td>Pending</td>
-                                        <td>$3000</td>
-                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>July 22, 2023</td>
-                                        <td>Approved</td>
-                                        <td>$200</td>
-                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>June 12, 2017</td>
-                                        <td>On Hold</td>
-                                        <td>$990</td>
-                                        <td><a href="shopping-cart.html"><b>View</b></a></td>
+                                    <tr th:each="tempOrder: ${orders}">
+                                        <td th:text="${tempOrder.orderid}"></td>
+                                        <td th:text="${tempOrder.customer.name}"></td>
+                                        <td th:text="${tempOrder.orderDate}"></td>
+                                        <td th:text="${tempOrder.status}"></td>
+                                        <td th:text="${tempOrder.price}"></td>
+                                        <td th:text="${tempOrder.shippingMethod.methodName}"></td>
+                                        <td>
+                                            <a th:href="@{/order/detail/{id}(id=${tempOrder.orderid})}">
+                                                <b>View</b>
+                                            </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

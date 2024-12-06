@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <div th:replace="~{/shared/header :: header}"/>
+    <!--<meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+</head>
+
+<body>
+
+<div th:replace="~{/shared/header :: navbar}"/>
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li>User Cart</li>
+        </ul>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Shopping Cart Section Start -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row mb-n6 mb-lg-n10">
+
+            <div class="col-12 mb-6 mb-lg-10">
+
+                <!-- Cart Table For Tablet & Up Devices Start -->
+                <table class="cart-table table table-bordered text-center align-middle mb-6 d-none d-md-table">
+                    <thead>
+                    <tr>
+                        <th class="image">Image</th>
+                        <th class="title">Product</th>
+                        <th class="size">Size</th>
+                        <th class="price">Price</th>
+                        <th class="quantity">Quantity</th>
+                        <th class="total">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                    <tr th:each="detail : ${order.orderDetails}">
+                        <!-- Hiển thị hình ảnh sản phẩm -->
+                        <td>
+                            <a th:if="${detail.product != null}" th:href="@{/product/details/{id}(id=${detail.product.productid})}">
+                                <!--<img th:src="@{'/images/products/single/' + ${item.product.image}}" alt="Product Image">-->
+                                <img loading="lazy" th:src="${detail.product.image}"alt="Product Image" >
+                            </a>
+                            <span th:if="${detail.product == null}">No Image</span>
+                        </td>
+                        <!-- Hiển thị tên sản phẩm -->
+                        <td th:if="${detail.product != null}">
+                            <a th:text="${detail.product.name}"></a>
+                        </td>
+
+                        <td th:if="${detail.size != null}">
+                            <span th:text="${detail.size.name}"></span>
+                        </td>
+
+                        <td th:if="${detail.product == null}">
+                            <span>No Product</span>
+                        </td>
+
+
+                        <td th:if="${detail.product != null}">
+                            <span th:text="${detail.product.price + (detail.size != null ? detail.size.additionalPrice : 0)}"></span>
+                        </td>
+
+
+                        <td th:if="${detail.product == null}">
+                            <span>N/A</span>
+                        </td>
+
+
+                        <!--<td th:if="${detail.product != null}">
+                            <div class="product-quantity-count">
+                                <button class="dec qty-btn"
+                                        th:disabled="${detail.quantity <= 1}"
+                                        th:onclick="'updateQuantity(' + ${detail.product.productid} + ', ' + ${detail.size.id} + ', ' + (${detail.quantity} - 1) + ')'">-</button>
+                                <input class="product-quantity-box" type="text" name="quantity" th:value="${detail.quantity}" readonly>
+                                <button class="inc qty-btn"
+                                        th:onclick="'updateQuantity(' + ${detail.product.productid} + ', ' + ${detail.size.id} + ', ' + (${detail.quantity} + 1) + ')'">+</button>
+                            </div>
+                        </td>-->
+
+                        <td th:if="${detail.size != null}">
+                            <span th:text="${detail.quantity}"></span>
+                        </td>
+
+
+                        <td th:if="${detail.product == null}">
+                            <span>N/A</span>
+                        </td>
+
+                        <td th:if="${detail.product != null}">
+                            <span th:text="${(detail.product.price + (detail.size != null ? detail.size.additionalPrice : 0)) * detail.quantity}"></span>
+                        </td>
+
+
+                        <td th:if="${detail.product == null}">
+                            <span>N/A</span>
+                        </td>
+
+
+                        <td th:if="${detail.product == null}">
+                            <span>N/A</span>
+                        </td>
+                    </tbody>
+                </table>
+                <!-- Cart Table For Tablet & Up Devices End -->
+
+                <!-- Cart Action Buttons Start -->
+                <div class="row justify-content-between gap-3">
+                    <div class="col-auto"><button class="btn btn-outline-dark btn-primary-hover rounded-0"><a th:href="@{/my-account}">Go Back</a></button></div>
+                </div>
+                <!-- Cart Action Buttons End -->
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Shopping Cart Section End -->
+
+<div th:replace="~{/shared/footer :: footerOt}"/>
+
+<div th:replace="~{/shared/footer :: scriptOt}"/>
+
+
+</body>
+
+</html>
